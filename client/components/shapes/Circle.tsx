@@ -8,7 +8,7 @@ interface Props {
 
 function Circle(props: Props) {
   return (
-    <svg style={{ overflow: 'visible' }}>
+    <svg style={{ overflow: 'visible', position: 'absolute' }}>
       <circle cx={props.x} cy={props.y} r={props.radius}></circle>
     </svg>
   )
