@@ -6,8 +6,8 @@ function Game() {
   return (
     <div>
       <h1>Clicky!</h1>
-      <Square size={100} />
-      <Circle radius={100} />
+      <Square x={50} y={200} size={100} />
+      <Circle x={150} y={200} radius={80} />
       <Triangle />
     </div>
   )

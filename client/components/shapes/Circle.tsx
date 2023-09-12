@@ -1,4 +1,6 @@
 interface Props {
+  x: number
+  y: number
   radius: number
 }
 
@@ -7,7 +9,7 @@ interface Props {
 function Circle(props: Props) {
   return (
     <svg style={{ overflow: 'visible' }}>
-      <circle cx="10" cy="100" r={props.radius}></circle>
+      <circle cx={props.x} cy={props.y} r={props.radius}></circle>
     </svg>
   )
 }
