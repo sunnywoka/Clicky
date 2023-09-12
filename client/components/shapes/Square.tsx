@@ -6,7 +6,7 @@ interface Props {
 
 function Square(props: Props) {
   return (
-    <svg style={{ overflow: 'visible' }}>
+    <svg style={{ overflow: 'visible', position: 'absolute' }}>
       <rect
         x={props.x}
         y={props.y}
