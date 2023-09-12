@@ -13,3 +13,6 @@ function Game() {
 }
 
 export default Game
+
+//1340 855 gmae dimesion max size
+//1440 1024 screen size
