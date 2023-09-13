@@ -16,36 +16,38 @@ function getRandom() {
 function Game() {
   const [xy, setXY] = useState([getRandom()[0], getRandom()[1]])
   const [circleXY, setCircleXY] = useState([getRandom()[0], getRandom()[1]])
+  const [count, setCount] = useState(0)
 
   function handleClick() {
     setXY(getRandom())
+    setCount(count + 1)
   }
 
   function handleCircleClick() {
     setCircleXY(getRandom())
+    setCount(count + 1)
   }
 
   return (
     <>
-    <button className='go-back-button'>
-    <Link to="/catagory"> Go Back </Link>
-    </button>
-    <div>
-      <h1>Clicky!</h1>
-         <Timer />
+      <button className="go-back-button">
+        <Link to="/catagory"> Go Back </Link>
+      </button>
+      <div>
+        <h1>Clicky!</h1>
+        <h2>Score: {count}</h2>
+        <Timer />
 
-      <svg viewBox="0 0 300 130" style={{ border: 'solid' }}>
-        <Square x={xy[0]} y={xy[1]} size={20} handleClick={handleClick} />
-        <Circle
-          x={circleXY[0]}
-          y={circleXY[1]}
-          radius={10}
-          handleCircleClick={handleCircleClick}
-        />
-      </svg>
-
-    </div>
-    
+        <svg viewBox="0 0 300 130" style={{ border: 'solid' }}>
+          <Square x={xy[0]} y={xy[1]} size={20} handleClick={handleClick} />
+          <Circle
+            x={circleXY[0]}
+            y={circleXY[1]}
+            radius={10}
+            handleCircleClick={handleCircleClick}
+          />
+        </svg>
+      </div>
     </>
   )
 }
