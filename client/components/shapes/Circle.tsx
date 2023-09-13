@@ -11,8 +11,8 @@ function Circle(props: Props) {
   return (
     <svg style={{ overflow: 'visible' }}>
       <circle
-        cx={props.x}
-        cy={props.y}
+        cx={props.x + 5}
+        cy={props.y + 5}
         r={props.radius}
         onClick={props.handleCircleClick}
       ></circle>
