@@ -44,30 +44,33 @@ function Game() {
 
   //click handlers
 
-  function handleClick(e: { pageX: any; pageY: any }) {
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     setXY(getRandom())
     setCount(count + shapeScore)
     setShapeScore(100)
-    const data = { absX: e.pageX, absY: e.pageY }
-    console.log(data)
-    const x = Number(data.absX)
-    const y = Number(data.absY)
+    explode(e)
+  }
+
+  function handleCircleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    setCircleXY(getRandom())
+    setCount(count + shapeScore)
+    setShapeScore(100)
+    explode(e)
+  }
+  function handleTriangleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    setTriangleXY(getRandom())
+    setCount(count + shapeScore)
+    setShapeScore(100)
+    explode(e)
+  }
+
+  //explode function
+  function explode(e: React.MouseEvent<HTMLButtonElement>) {
     setExplosionPosition([e.pageX, e.pageY])
     setIsExploding(true)
     setTimeout(() => {
       setIsExploding(false)
     }, 250)
-  }
-
-  function handleCircleClick() {
-    setCircleXY(getRandom())
-    setCount(count + shapeScore)
-    setShapeScore(100)
-  }
-  function handleTriangleClick() {
-    setTriangleXY(getRandom())
-    setCount(count + shapeScore)
-    setShapeScore(100)
   }
 
   return (
