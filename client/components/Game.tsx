@@ -4,39 +4,40 @@ import Square from './shapes/Square'
 // import Triangle from './shapes/Triangle'
 
 function Game() {
-  const initSquareRandomNum = getRandomNum(200, 600)
-  // const initCircleRandomNum = getRandomNum(200, 600)
-  const [randomSquareNum, setRandomSquareNum] = useState(
-    initSquareRandomNum as number[]
-  )
-  function getRandomNum(min: number, max: number) {
-    return [
-      Math.random() * (max - min) + min,
-      Math.random() * (max - min) + min,
-    ]
-  }
+  // const initSquareRandomNum = [200, 200]
+  // // const initCircleRandomNum = getRandomNum(200, 600)
+  // const [randomSquareNum, setRandomSquareNum] = useState(200)
 
-  // const [randomCircleNum, setRandomCircleNum] = useState(
-  //   initCircleRandomNum as number[]
-  // )
+  // function getRandomNum(min: number, max: number) {
+  //   return Math.random() * (max - min) + min
+  // }
 
-  function handleSquareClick() {
-    console.log('Click')
-    const newPosition = () => getRandomNum(200, 600)
-    setRandomSquareNum(newPosition)
-    // setRandomCircleNum(() => getRandomNum(200, 600))
-  }
+  // // const [randomCircleNum, setRandomCircleNum] = useState(
+  // //   initCircleRandomNum as number[]
+  // // )
 
-  console.log(randomSquareNum)
+  // function handleSquareClick() {
+  //   console.log('Click')
+  //   // const newPosition = () => getRandomNum(200, 600)
+  //   // setRandomSquareNum(newPosition)
+  //   // // setRandomCircleNum(() => getRandomNum(200, 600))
+  //   // const squareX = getRandomNum(200, 600)
+  //   // const squareY = getRandomNum(200, 600)
+  //   const rand = getRandomNum(200, 600)
+  //   setRandomSquareNum(rand)
+  //   console.log({ randomSquareNum })
+  // }
+
+  // console.log('randomSquareNum', randomSquareNum)
 
   return (
     <div>
       <h1>Clicky!</h1>
       <Square
-        x={randomSquareNum[0]}
-        y={randomSquareNum[1]}
+        // x={randomSquareNum}
+        // y={randomSquareNum}
         size={50}
-        handleClick={handleSquareClick}
+        // handleClick={handleSquareClick}
       />
       {/* <Circle x={randomCircleNum[0]} y={randomCircleNum[1]} radius={80} /> */}
     </div>
