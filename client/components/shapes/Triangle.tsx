@@ -2,6 +2,7 @@ interface Props {
   x: number
   y: number
   sideLength: number
+  handleTriangleClick: () => void
 }
 function Triangle(props: Props) {
   const side = props.sideLength
@@ -16,7 +17,10 @@ function Triangle(props: Props) {
   const y3 = side + y
   return (
     <svg style={{ overflow: 'visible', position: 'absolute' }}>
-      <polygon points={`${x1} ${y1}, ${x2} ${y2}, ${x3} ${y3}`} />
+      <polygon
+        points={`${x1} ${y1}, ${x2} ${y2}, ${x3} ${y3}`}
+        onClick={props.handleTriangleClick}
+      />
     </svg>
   )
 }
