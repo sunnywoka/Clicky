@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Circle from './shapes/Circle'
 import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
+import Explode from './Explode'
 // import Triangle from './shapes/Triangle'
 
 function getRandom() {
@@ -22,8 +23,11 @@ function Game() {
 
   //scoring states
   const [shapeScore, setShapeScore] = useState(100)
-  //timer values
 
+  //explosion state
+  const [isExploding, setIsExploding] = useState(false)
+  const [explosionPosition, setExplosionPosition] = useState([0, 0])
+  //timer values
   const [num, setNum] = useState(60)
   const intervalRef = useRef()
 
@@ -40,10 +44,19 @@ function Game() {
 
   //click handlers
 
-  function handleClick() {
+  function handleClick(e: { pageX: any; pageY: any }) {
     setXY(getRandom())
     setCount(count + shapeScore)
     setShapeScore(100)
+    const data = { absX: e.pageX, absY: e.pageY }
+    console.log(data)
+    const x = Number(data.absX)
+    const y = Number(data.absY)
+    setExplosionPosition([e.pageX, e.pageY])
+    setIsExploding(true)
+    setTimeout(() => {
+      setIsExploding(false)
+    }, 250)
   }
 
   function handleCircleClick() {
@@ -83,6 +96,12 @@ function Game() {
             handleTriangleClick={handleTriangleClick}
           />
         </svg>
+        {isExploding && (
+          <Explode
+            x={explosionPosition[0] - 100}
+            y={explosionPosition[1] - 100}
+          />
+        )}
       </div>
     </>
   )
