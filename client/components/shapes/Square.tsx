@@ -2,6 +2,7 @@ interface Props {
   x: number
   y: number
   size: number
+  handleClick: () => void
 }
 
 function Square(props: Props) {
@@ -12,6 +13,7 @@ function Square(props: Props) {
         y={props.y}
         width={props.size}
         height={props.size}
+        onClick={props.handleClick}
       ></rect>
     </svg>
   )
