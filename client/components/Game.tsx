@@ -7,29 +7,28 @@ import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 // import Triangle from './shapes/Triangle'
 
+function isTooClose(point1: number[], point2: number[], minDistance: number) {
+  const distance = Math.sqrt(
+    (point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2
+  )
+  return distance < minDistance
+}
+
 function getRandom() {
   const squareXY = getRandomXY()
+  let circleXY, triangleXY
 
-  let circleXY
   do {
     circleXY = getRandomXY()
-  } while (
-    Math.sqrt(
-      (squareXY[0] - circleXY[0]) ** 2 + (squareXY[1] - circleXY[1]) ** 2
-    ) < 40
-  )
+  } while (isTooClose(squareXY, circleXY, 40))
 
-  let triangleXY
   do {
     triangleXY = getRandomXY()
   } while (
-    Math.sqrt(
-      (squareXY[0] - triangleXY[0]) ** 2 + (squareXY[1] - triangleXY[1]) ** 2
-    ) < 40 ||
-    Math.sqrt(
-      (circleXY[0] - triangleXY[0]) ** 2 + (circleXY[1] - triangleXY[1]) ** 2
-    ) < 40
+    isTooClose(squareXY, triangleXY, 40) ||
+    isTooClose(circleXY, triangleXY, 40)
   )
+
   return [squareXY, circleXY, triangleXY]
 }
 
