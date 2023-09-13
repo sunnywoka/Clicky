@@ -13,9 +13,22 @@ function getRandomHeight(heightValue: number) {
 }
 
 function getCurrentDimention() {
+  const height = window.innerHeight
+  let newHeight: number = height
+  switch (true) {
+    case height < 650:
+      newHeight /= 2
+      break
+    case height < 900:
+      newHeight /= 6
+      break
+    case height > 1100:
+      newHeight /= 2
+      break
+  }
   return {
     width: window.innerWidth,
-    height: window.innerHeight / 2,
+    height: newHeight,
   }
 }
 
@@ -62,6 +75,7 @@ function Game() {
       window.removeEventListener('resize', updateDimension)
     }
   }, [screenSize])
+  console.log(screenSize)
 
   //click handlers
   function handleClick() {
@@ -92,29 +106,31 @@ function Game() {
         <div>
           <h2>{num}</h2>
         </div>
-        <svg
-          viewBox={`0 0 300 ${screenSize.height}`}
-          style={{ border: 'solid' }}
-        >
-          <Square
-            x={squareXY[0]}
-            y={squareXY[1]}
-            size={20}
-            handleClick={handleClick}
-          />
-          <Circle
-            x={circleXY[0]}
-            y={circleXY[1]}
-            radius={10}
-            handleCircleClick={handleCircleClick}
-          />
-          <Triangle
-            x={triangleXY[0]}
-            y={triangleXY[1]}
-            sideLength={20}
-            handleTriangleClick={handleTriangleClick}
-          />
-        </svg>
+        <div className="flex justify-center items-center w-max h-max p-10">
+          <svg
+            viewBox={`0 0 300 ${screenSize.height}`}
+            style={{ borderWidth: '2px', borderColor: 'black', margin: '30px' }}
+          >
+            <Square
+              x={squareXY[0]}
+              y={squareXY[1]}
+              size={20}
+              handleClick={handleClick}
+            />
+            <Circle
+              x={circleXY[0]}
+              y={circleXY[1]}
+              radius={10}
+              handleCircleClick={handleCircleClick}
+            />
+            <Triangle
+              x={triangleXY[0]}
+              y={triangleXY[1]}
+              sideLength={20}
+              handleTriangleClick={handleTriangleClick}
+            />
+          </svg>
+        </div>
       </div>
     </>
   )
