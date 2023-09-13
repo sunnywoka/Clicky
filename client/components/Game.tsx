@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-import Timer from './Timer'
+import GameOver from './GameOver'
 import { Link } from 'react-router-dom'
 import Circle from './shapes/Circle'
 import Square from './shapes/Square'
@@ -19,16 +19,31 @@ function Game() {
   const [circleXY, setCircleXY] = useState([getRandom()[0], getRandom()[1]])
   const [triangleXY, setTriangleXY] = useState([getRandom()[0], getRandom()[1]])
   const [count, setCount] = useState(0)
+  const [showDiv, setShowDiv] = useState(false)
+
 
   //scoring states
   const [shapeScore, setShapeScore] = useState(100)
   //timer values
 
+
   const [num, setNum] = useState(60)
-  const intervalRef = useRef()
+  const intervalRef = useRef() 
 
-  const decreaseNum = () => setNum((prev) => prev - 1)
-
+ 
+  const decreaseNum = () => {
+    setNum((prev) => {
+      if (prev > 0) {
+        return prev - 1
+      } else {
+        clearInterval(intervalRef.current)
+          setShowDiv(true)
+        return 0
+      }
+    })
+    
+  }
+  
   const decreaseScore = () => setShapeScore((prev) => prev - 1)
 
   useEffect(() => {
@@ -65,6 +80,7 @@ function Game() {
       <div>
         <h1>Clicky!</h1>
         <h2>Score: {count}</h2>
+        { showDiv && <GameOver score={count} show={showDiv} />}
         <div>
           <h2>{num}</h2>
         </div>
