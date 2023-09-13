@@ -1,45 +1,39 @@
 import { useState } from 'react'
-// import Circle from './shapes/Circle'
+import Circle from './shapes/Circle'
 import Square from './shapes/Square'
 // import Triangle from './shapes/Triangle'
 
+function getRandom() {
+  return [
+    Math.floor(Math.random() * 275) + 5,
+    Math.floor(Math.random() * 105) + 5,
+  ]
+}
+
 function Game() {
-  // const initSquareRandomNum = [200, 200]
-  // // const initCircleRandomNum = getRandomNum(200, 600)
-  // const [randomSquareNum, setRandomSquareNum] = useState(200)
+  const [xy, setXY] = useState([getRandom()[0], getRandom()[1]])
+  const [circleXY, setCircleXY] = useState([getRandom()[0], getRandom()[1]])
 
-  // function getRandomNum(min: number, max: number) {
-  //   return Math.random() * (max - min) + min
-  // }
+  function handleClick() {
+    setXY(getRandom())
+  }
 
-  // // const [randomCircleNum, setRandomCircleNum] = useState(
-  // //   initCircleRandomNum as number[]
-  // // )
-
-  // function handleSquareClick() {
-  //   console.log('Click')
-  //   // const newPosition = () => getRandomNum(200, 600)
-  //   // setRandomSquareNum(newPosition)
-  //   // // setRandomCircleNum(() => getRandomNum(200, 600))
-  //   // const squareX = getRandomNum(200, 600)
-  //   // const squareY = getRandomNum(200, 600)
-  //   const rand = getRandomNum(200, 600)
-  //   setRandomSquareNum(rand)
-  //   console.log({ randomSquareNum })
-  // }
-
-  // console.log('randomSquareNum', randomSquareNum)
+  function handleCircleClick() {
+    setCircleXY(getRandom())
+  }
 
   return (
     <div>
       <h1>Clicky!</h1>
-      <Square
-        // x={randomSquareNum}
-        // y={randomSquareNum}
-        size={50}
-        // handleClick={handleSquareClick}
-      />
-      {/* <Circle x={randomCircleNum[0]} y={randomCircleNum[1]} radius={80} /> */}
+      <svg viewBox="0 0 300 130" style={{ border: 'solid' }}>
+        <Square x={xy[0]} y={xy[1]} size={20} handleClick={handleClick} />
+        <Circle
+          x={circleXY[0]}
+          y={circleXY[1]}
+          radius={10}
+          handleCircleClick={handleCircleClick}
+        />
+      </svg>
     </div>
   )
 }
