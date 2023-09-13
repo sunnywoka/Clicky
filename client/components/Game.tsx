@@ -8,6 +8,32 @@ import Triangle from './shapes/Triangle'
 // import Triangle from './shapes/Triangle'
 
 function getRandom() {
+  const squareXY = getRandomXY()
+
+  let circleXY
+  do {
+    circleXY = getRandomXY()
+  } while (
+    Math.sqrt(
+      (squareXY[0] - circleXY[0]) ** 2 + (squareXY[1] - circleXY[1]) ** 2
+    ) < 40
+  )
+
+  let triangleXY
+  do {
+    triangleXY = getRandomXY()
+  } while (
+    Math.sqrt(
+      (squareXY[0] - triangleXY[0]) ** 2 + (squareXY[1] - triangleXY[1]) ** 2
+    ) < 40 ||
+    Math.sqrt(
+      (circleXY[0] - triangleXY[0]) ** 2 + (circleXY[1] - triangleXY[1]) ** 2
+    ) < 40
+  )
+  return [squareXY, circleXY, triangleXY]
+}
+
+function getRandomXY() {
   return [
     Math.floor(Math.random() * 275) + 5,
     Math.floor(Math.random() * 105) + 5,
@@ -15,9 +41,10 @@ function getRandom() {
 }
 
 function Game() {
-  const [xy, setXY] = useState([getRandom()[0], getRandom()[1]])
-  const [circleXY, setCircleXY] = useState([getRandom()[0], getRandom()[1]])
-  const [triangleXY, setTriangleXY] = useState([getRandom()[0], getRandom()[1]])
+  const [squareXY, setSquareXY] = useState(getRandom()[0])
+  const [circleXY, setCircleXY] = useState(getRandom()[1])
+  const [triangleXY, setTriangleXY] = useState(getRandom()[2])
+
   const [count, setCount] = useState(0)
 
   //scoring states
@@ -41,20 +68,35 @@ function Game() {
   //click handlers
 
   function handleClick() {
-    setXY(getRandom())
+    setSquareXY(getNewXY(circleXY, triangleXY))
     setCount(count + shapeScore)
     setShapeScore(100)
   }
 
   function handleCircleClick() {
-    setCircleXY(getRandom())
+    setCircleXY(getNewXY(squareXY, triangleXY))
     setCount(count + shapeScore)
     setShapeScore(100)
   }
   function handleTriangleClick() {
-    setTriangleXY(getRandom())
+    setTriangleXY(getNewXY(squareXY, circleXY))
     setCount(count + shapeScore)
     setShapeScore(100)
+  }
+
+  function isOverlap(coords1: number[], coords2: number[]) {
+    const [x1, y1] = coords1
+    const [x2, y2] = coords2
+    const distance = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+    return distance < 40 // Adjust this threshold as needed
+  }
+
+  function getNewXY(coords1: number[], coords2: number[]) {
+    let coords
+    do {
+      coords = getRandomXY()
+    } while (isOverlap(coords, coords1) || isOverlap(coords, coords2))
+    return coords
   }
 
   return (
@@ -69,7 +111,12 @@ function Game() {
           <h2>{num}</h2>
         </div>
         <svg viewBox="0 0 300 130" style={{ border: 'solid' }}>
-          <Square x={xy[0]} y={xy[1]} size={20} handleClick={handleClick} />
+          <Square
+            x={squareXY[0]}
+            y={squareXY[1]}
+            size={20}
+            handleClick={handleClick}
+          />
           <Circle
             x={circleXY[0]}
             y={circleXY[1]}
