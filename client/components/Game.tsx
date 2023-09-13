@@ -1,58 +1,82 @@
 import { useEffect, useRef, useState } from 'react'
-
-import Timer from './Timer'
 import { Link } from 'react-router-dom'
 import Circle from './shapes/Circle'
 import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
-// import Triangle from './shapes/Triangle'
 
-function getRandom() {
-  return [
-    Math.floor(Math.random() * 275) + 5,
-    Math.floor(Math.random() * 105) + 5,
-  ]
+function getRandomWidth() {
+  return Math.floor(Math.random() * 275) + 5
+}
+
+function getRandomHeight(heightValue: number) {
+  return Math.floor(Math.random() * heightValue) + 5
+}
+
+function getCurrentDimention() {
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight / 2,
+  }
 }
 
 function Game() {
-  const [xy, setXY] = useState([getRandom()[0], getRandom()[1]])
-  const [circleXY, setCircleXY] = useState([getRandom()[0], getRandom()[1]])
-  const [triangleXY, setTriangleXY] = useState([getRandom()[0], getRandom()[1]])
+  //Screen Size
+  const [screenSize, setScreenSize] = useState(getCurrentDimention())
+  //Shapes
+  const [squareXY, setSquareXY] = useState([
+    getRandomWidth(),
+    getRandomHeight(screenSize.height),
+  ])
+  const [circleXY, setCircleXY] = useState([
+    getRandomWidth(),
+    getRandomHeight(screenSize.height),
+  ])
+  const [triangleXY, setTriangleXY] = useState([
+    getRandomWidth(),
+    getRandomHeight(screenSize.height),
+  ])
+  //Score
   const [count, setCount] = useState(0)
-
-  //scoring states
   const [shapeScore, setShapeScore] = useState(100)
-  //timer values
-
+  //Timer
   const [num, setNum] = useState(60)
+
   const intervalRef = useRef()
-
   const decreaseNum = () => setNum((prev) => prev - 1)
-
   const decreaseScore = () => setShapeScore((prev) => prev - 1)
 
+  //Timer useEffect
   useEffect(() => {
     intervalRef.current = setInterval(decreaseNum, 1000)
     intervalRef.current = setInterval(decreaseScore, 100)
-
     return () => clearInterval(intervalRef.current)
   }, [])
 
-  //click handlers
+  //Responsive useEffect
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimention())
+    }
+    window.addEventListener('resize', updateDimension)
+    return () => {
+      window.removeEventListener('resize', updateDimension)
+    }
+  }, [screenSize])
 
+  //click handlers
   function handleClick() {
-    setXY(getRandom())
+    setSquareXY([getRandomWidth(), getRandomHeight(screenSize.height)])
     setCount(count + shapeScore)
     setShapeScore(100)
   }
 
   function handleCircleClick() {
-    setCircleXY(getRandom())
+    setCircleXY([getRandomWidth(), getRandomHeight(screenSize.height)])
     setCount(count + shapeScore)
     setShapeScore(100)
   }
   function handleTriangleClick() {
-    setTriangleXY(getRandom())
+    setTriangleXY([getRandomWidth(), getRandomHeight(screenSize.height)])
     setCount(count + shapeScore)
     setShapeScore(100)
   }
@@ -68,8 +92,16 @@ function Game() {
         <div>
           <h2>{num}</h2>
         </div>
-        <svg viewBox="0 0 300 130" style={{ border: 'solid' }}>
-          <Square x={xy[0]} y={xy[1]} size={20} handleClick={handleClick} />
+        <svg
+          viewBox={`0 0 300 ${screenSize.height}`}
+          style={{ border: 'solid' }}
+        >
+          <Square
+            x={squareXY[0]}
+            y={squareXY[1]}
+            size={20}
+            handleClick={handleClick}
+          />
           <Circle
             x={circleXY[0]}
             y={circleXY[1]}
