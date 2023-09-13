@@ -10,17 +10,19 @@ function getRandomWidth() {
 
 function getRandomHeight(heightValue: number) {
   const height = Math.floor(Math.random() * heightValue)
-  if (height <= heightValue && height >= heightValue - 50) {
-    return height - 20
-  } else if (height >= 0) {
-    return height + 20
-  }
+  return height <= heightValue && height >= heightValue - 50
+    ? height - 20
+    : height + 5
 }
 
 function getCurrentDimention() {
   const height = window.innerHeight
+  const width = window.innerWidth
   let newHeight: number = height
   switch (true) {
+    case height < 650 && width < 450:
+      newHeight /= 2
+      break
     case height < 650:
       newHeight /= 3
       break
