@@ -1,4 +1,7 @@
 import { useState } from 'react'
+
+import Timer from './Timer'
+import { Link } from 'react-router-dom'
 import Circle from './shapes/Circle'
 import Square from './shapes/Square'
 // import Triangle from './shapes/Triangle'
@@ -23,8 +26,14 @@ function Game() {
   }
 
   return (
+    <>
+    <button className='go-back-button'>
+    <Link to="/catagory"> Go Back </Link>
+    </button>
     <div>
       <h1>Clicky!</h1>
+         <Timer />
+
       <svg viewBox="0 0 300 130" style={{ border: 'solid' }}>
         <Square x={xy[0]} y={xy[1]} size={20} handleClick={handleClick} />
         <Circle
@@ -34,7 +43,10 @@ function Game() {
           handleCircleClick={handleCircleClick}
         />
       </svg>
+
     </div>
+    
+    </>
   )
 }
 
