@@ -6,7 +6,7 @@ function Home() {
     <>
       <h1 className="catagory-choose">Blicky</h1>
       <button className="home-button">
-        <Link to="/blicky"> Choose Game Mode </Link>
+        <Link to="/catagory"> Choose Game Mode </Link>
       </button>
     </>
   )
