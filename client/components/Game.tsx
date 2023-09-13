@@ -7,29 +7,11 @@ import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 // import Triangle from './shapes/Triangle'
 
-function isTooClose(point1: number[], point2: number[], minDistance: number) {
+function isTooClose(coords1: number[], coords2: number[], minDistance: number) {
   const distance = Math.sqrt(
-    (point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2
+    (coords1[0] - coords2[0]) ** 2 + (coords1[1] - coords2[1]) ** 2
   )
   return distance < minDistance
-}
-
-function getRandom() {
-  const squareXY = getRandomXY()
-  let circleXY, triangleXY
-
-  do {
-    circleXY = getRandomXY()
-  } while (isTooClose(squareXY, circleXY, 40))
-
-  do {
-    triangleXY = getRandomXY()
-  } while (
-    isTooClose(squareXY, triangleXY, 40) ||
-    isTooClose(circleXY, triangleXY, 40)
-  )
-
-  return [squareXY, circleXY, triangleXY]
 }
 
 function getRandomXY() {
@@ -39,10 +21,37 @@ function getRandomXY() {
   ]
 }
 
+function getRandom() {
+  const squareXY = getRandomXY()
+  let circleXY, triangleXY
+
+  do {
+    circleXY = getRandomXY()
+  } while (isTooClose(squareXY, circleXY, 30))
+
+  do {
+    triangleXY = getRandomXY()
+  } while (
+    isTooClose(squareXY, triangleXY, 30) ||
+    isTooClose(circleXY, triangleXY, 30)
+  )
+  console.log('s: ' + squareXY)
+  console.log('c: ' + circleXY)
+  console.log('t: ' + triangleXY)
+  return [squareXY, circleXY, triangleXY]
+}
+
 function Game() {
-  const [squareXY, setSquareXY] = useState(getRandom()[0])
-  const [circleXY, setCircleXY] = useState(getRandom()[1])
-  const [triangleXY, setTriangleXY] = useState(getRandom()[2])
+  const [squareXY, setSquareXY] = useState([0, 0])
+  const [circleXY, setCircleXY] = useState([0, 0])
+  const [triangleXY, setTriangleXY] = useState([0, 0])
+
+  useEffect(() => {
+    const xy = getRandom()
+    setSquareXY(xy[0])
+    setCircleXY(xy[1])
+    setTriangleXY(xy[2])
+  }, [])
 
   const [count, setCount] = useState(0)
 
@@ -83,18 +92,11 @@ function Game() {
     setShapeScore(100)
   }
 
-  function isOverlap(coords1: number[], coords2: number[]) {
-    const [x1, y1] = coords1
-    const [x2, y2] = coords2
-    const distance = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
-    return distance < 40 // Adjust this threshold as needed
-  }
-
   function getNewXY(coords1: number[], coords2: number[]) {
     let coords
     do {
       coords = getRandomXY()
-    } while (isOverlap(coords, coords1) || isOverlap(coords, coords2))
+    } while (isTooClose(coords, coords1, 40) || isTooClose(coords, coords2, 40))
     return coords
   }
 
