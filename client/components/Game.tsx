@@ -8,17 +8,52 @@ import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 // import Triangle from './shapes/Triangle'
 
-function getRandom() {
+function isTooClose(coords1: number[], coords2: number[], minDistance: number) {
+  const distance = Math.sqrt(
+    (coords1[0] - coords2[0]) ** 2 + (coords1[1] - coords2[1]) ** 2
+  )
+  return distance < minDistance
+}
+
+function getRandomXY() {
   return [
     Math.floor(Math.random() * 275) + 5,
     Math.floor(Math.random() * 105) + 5,
   ]
 }
 
+function getRandom() {
+  const squareXY = getRandomXY()
+  let circleXY, triangleXY
+
+  do {
+    circleXY = getRandomXY()
+  } while (isTooClose(squareXY, circleXY, 30))
+
+  do {
+    triangleXY = getRandomXY()
+  } while (
+    isTooClose(squareXY, triangleXY, 30) ||
+    isTooClose(circleXY, triangleXY, 30)
+  )
+  console.log('s: ' + squareXY)
+  console.log('c: ' + circleXY)
+  console.log('t: ' + triangleXY)
+  return [squareXY, circleXY, triangleXY]
+}
+
 function Game() {
-  const [xy, setXY] = useState([getRandom()[0], getRandom()[1]])
-  const [circleXY, setCircleXY] = useState([getRandom()[0], getRandom()[1]])
-  const [triangleXY, setTriangleXY] = useState([getRandom()[0], getRandom()[1]])
+  const [squareXY, setSquareXY] = useState([0, 0])
+  const [circleXY, setCircleXY] = useState([0, 0])
+  const [triangleXY, setTriangleXY] = useState([0, 0])
+
+  useEffect(() => {
+    const xy = getRandom()
+    setSquareXY(xy[0])
+    setCircleXY(xy[1])
+    setTriangleXY(xy[2])
+  }, [])
+
   const [count, setCount] = useState(0)
 
   //scoring states
@@ -43,22 +78,22 @@ function Game() {
   }, [])
 
   //click handlers
-
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
-    setXY(getRandom())
+     setSquareXY(getNewXY(circleXY, triangleXY))
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
   }
 
   function handleCircleClick(e: React.MouseEvent<HTMLButtonElement>) {
-    setCircleXY(getRandom())
+    setCircleXY(getNewXY(squareXY, triangleXY))
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
   }
+
   function handleTriangleClick(e: React.MouseEvent<HTMLButtonElement>) {
-    setTriangleXY(getRandom())
+    setTriangleXY(getNewXY(squareXY, circleXY))
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
@@ -73,6 +108,14 @@ function Game() {
     }, 250)
   }
 
+  function getNewXY(coords1: number[], coords2: number[]) {
+    let coords
+    do {
+      coords = getRandomXY()
+    } while (isTooClose(coords, coords1, 40) || isTooClose(coords, coords2, 40))
+    return coords
+  }
+
   return (
     <>
       <button className="go-back-button">
@@ -85,7 +128,12 @@ function Game() {
           <h2>{num}</h2>
         </div>
         <svg viewBox="0 0 300 130" style={{ border: 'solid' }}>
-          <Square x={xy[0]} y={xy[1]} size={20} handleClick={handleClick} />
+          <Square
+            x={squareXY[0]}
+            y={squareXY[1]}
+            size={20}
+            handleClick={handleClick}
+          />
           <Circle
             x={circleXY[0]}
             y={circleXY[1]}
