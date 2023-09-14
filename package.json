@@ -9,7 +9,7 @@
     "dev": "run-p dev:server dev:client",
     "dev:server": "tsx watch server/index.ts",
     "dev:client": "vite",
-    "dev:css":"tailwindcss -i client/styles/main.css -o public/main.css --watch",
+    "dev:css": "tailwindcss -i client/styles/main.css -o public/main.css --watch",
     "knex": "knex --knexfile server/db/knexfile.js",
     "db-reset": "run-s db:*",
     "db:delete": "rm server/db/dev.sqlite3",
@@ -35,6 +35,7 @@
     "express-jwt-authz": "^2.4.1",
     "jwks-rsa": "^2.1.5",
     "knex": "^2.5.1",
+    "react-explode": "^2.0.5",
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {
