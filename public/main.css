@@ -537,6 +537,14 @@ video {
   margin: 1rem;
 }
 
+.m-8 {
+  margin: 2rem;
+}
+
+.m-36 {
+  margin: 9rem;
+}
+
 .flex {
   display: flex;
 }
@@ -566,6 +574,10 @@ video {
   resize: both;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .items-center {
   align-items: center;
 }
@@ -578,8 +590,20 @@ video {
   gap: 20rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-20 {
+  gap: 5rem;
+}
+
 .rounded {
   border-radius: 0.25rem;
+}
+
+.border-2 {
+  border-width: 2px;
 }
 
 .border-4 {
@@ -598,6 +622,10 @@ video {
 
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-36 {
+  padding: 9rem;
 }
 
 .px-36 {
@@ -627,6 +655,10 @@ video {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .text-primary {
