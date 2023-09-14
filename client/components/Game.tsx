@@ -1,251 +1,86 @@
-import { useEffect, useRef, useState } from 'react'
+/* eslint-disable jsx-a11y/media-has-caption */
+import GameOver from './GameOver'
 import { Link } from 'react-router-dom'
 import Circle from './shapes/Circle'
 import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
-/* eslint-disable jsx-a11y/media-has-caption */
 
-function getRandomWidth() {
-  return Math.floor(Math.random() * 275) + 5
-}
-
-function getRandomHeight(heightValue: number) {
-  const height = Math.floor(Math.random() * heightValue)
-  return height <= heightValue && height >= heightValue - 50
-    ? height - 20
-    : height + 5
-}
-
-function getCurrentDimention() {
-  const height = window.innerHeight
-  const width = window.innerWidth
-  let newHeight: number = height
-  switch (true) {
-    case height < 650 && width < 450:
-      newHeight /= 2
-      break
-    case height < 650:
-      newHeight /= 3
-      break
-    case height <= 1100:
-      newHeight /= 8
-      break
-    case height > 1100:
-      newHeight /= 9
-      break
-  }
-  return {
-    width: window.innerWidth,
-    height: Math.floor(newHeight),
-  }
-}
-
-function isTooClose(coords1: number[], coords2: number[], minDistance: number) {
-  const distance = Math.sqrt(
-    (coords1[0] - coords2[0]) ** 2 + (coords1[1] - coords2[1]) ** 2
-  )
-  return distance < minDistance
-}
-
-function getRandomXY(heightValue: number) {
-  return [getRandomWidth(), getRandomHeight(heightValue)]
-}
+import useGame from './hooks/useGame'
 
 function Game() {
-  function getNewXY(coords1: number[], coords2: number[]) {
-    let coords
-    do {
-      coords = getRandomXY(screenSize.height)
-    } while (isTooClose(coords, coords1, 40) || isTooClose(coords, coords2, 40))
-    return coords
-  }
-
-  function getRandom() {
-    const squareXY = getRandomXY(screenSize.height)
-    let circleXY, triangleXY
-
-    do {
-      circleXY = getRandomXY(screenSize.height)
-    } while (isTooClose(squareXY, circleXY, 30))
-
-    do {
-      triangleXY = getRandomXY(screenSize.height)
-    } while (
-      isTooClose(squareXY, triangleXY, 30) ||
-      isTooClose(circleXY, triangleXY, 30)
-    )
-    return [squareXY, circleXY, triangleXY]
-  }
-
-  //Screen Size
-  const [screenSize, setScreenSize] = useState(getCurrentDimention)
-  const [squareXY, setSquareXY] = useState([0, 0])
-  const [circleXY, setCircleXY] = useState([0, 0])
-  const [triangleXY, setTriangleXY] = useState([0, 0])
-
-  useEffect(() => {
-    const xy = getRandom()
-    setSquareXY(xy[0])
-    setCircleXY(xy[1])
-    setTriangleXY(xy[2])
-  }, [])
-
-  useEffect(() => {
-    const updateDimension = () => {
-      setScreenSize(getCurrentDimention())
-    }
-    window.addEventListener('resize', updateDimension)
-    return () => {
-      window.removeEventListener('resize', updateDimension)
-    }
-  }, [])
-  console.log(screenSize)
-
-  const [count, setCount] = useState(0)
-  const [shapeScore, setShapeScore] = useState(100)
-  //Timer
-
-  //explosion state
-  const [isExploding, setIsExploding] = useState(false)
-  const [explosionPosition, setExplosionPosition] = useState([0, 0])
-  //timer values
-
-  const [num, setNum] = useState(60)
-
-  const intervalRef = useRef()
-  const decreaseNum = () => setNum((prev) => prev - 1)
-  const decreaseScore = () => setShapeScore((prev) => prev - 1)
-
-  //Timer useEffect
-  useEffect(() => {
-    intervalRef.current = setInterval(decreaseNum, 1000)
-    intervalRef.current = setInterval(decreaseScore, 100)
-    return () => clearInterval(intervalRef.current)
-  }, [])
-
-  //click handlers
-  function handleClick(e: React.MouseEvent<SVGRectElement>) {
-    setSquareXY(getNewXY(circleXY, triangleXY))
-    setCount(count + shapeScore)
-    setShapeScore(100)
-    explode(e)
-    handlePlay()
-  }
-
-  const audioRef = useRef(null)
-  // const audioRef2 = useRef(null)
-
-  // const audioRef3 = useRef(null)
-  const handlePlay = () => {
-    audioRef.current.play()
-  }
-  // const handlePlay2 = () => {
-  //   audioRef2.current.play()
-  // }
-  // const handlePlay3 = () => {
-  //   audioRef3.current.play()
-  // }
-
-  function handleCircleClick(e: React.MouseEvent<SVGCircleElement>) {
-    setCircleXY(getNewXY(squareXY, triangleXY))
-    console.log(circleXY)
-    setCount(count + shapeScore)
-    setShapeScore(100)
-    explode(e)
-    handlePlay()
-  }
-
-  function handleTriangleClick(e: React.MouseEvent<SVGPolygonElement>) {
-    setTriangleXY(getNewXY(squareXY, circleXY))
-    setCount(count + shapeScore)
-    setShapeScore(100)
-    explode(e)
-    handlePlay()
-  }
-
-  //explode function
-  function explode(
-    e:
-      | React.MouseEvent<SVGRectElement>
-      | React.MouseEvent<SVGCircleElement>
-      | React.MouseEvent<SVGPolygonElement>
-  ) {
-    setExplosionPosition([e.pageX, e.pageY])
-    setIsExploding(true)
-    setTimeout(() => {
-      setIsExploding(false)
-    }, 250)
-  }
-
+  const { states, effects, clicks, audio } = useGame()
   return (
     <>
-      <button className="go-back-button">
-        <Link to="/catagory"> Go Back </Link>
-      </button>
       <div>
-        <h1>Clicky!</h1>
-        <h2>Score: {count}</h2>
-        <div>
-          <h2>{num}</h2>
+        <h1 className="text-6xl m-4 text-primary font-bold text-center">
+          Clicky!
+        </h1>
+        <div className="flex justify-center p-2 m-4 items-center text-3xl">
+          <Link
+            className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+            to="/catagory"
+          >
+            Go Back
+          </Link>
+          <h2 className="text-center flex-grow">Time: {states.num.state}</h2>
+          <h2 className="ml-auto">Score: {states.count.state}</h2>
         </div>
-      </div>
+        <div>
+          <audio ref={audio.audioRef}>
+            <source src="../../src/click.wav" type="audio/mpeg" />
+            <p>Your browser does not support the audio element.</p>
+          </audio>
+        </div>
 
-      <div>
-        <audio ref={audioRef}>
-          <source src="../../src/4.wav" type="audio/mpeg" />
-          <p>Your browser does not support the audio element.</p>
-        </audio>
-      </div>
-      {/* <div>
-        <audio ref={audioRef2}>
-          <source src="../../src/4.wav" type="audio/mpeg" />
-          <p>Your browser does not support the audio element.</p>
-        </audio>
-      </div>
-      <div>
-        <audio ref={audioRef3}>
-          <source src="../../src/4.wav" type="audio/mpeg" />
-          <p>Your browser does not support the audio element.</p>
-        </audio>
-      </div> */}
-
-      <div className="flex justify-center items-center w-max h-max p-10">
-        <svg
-          viewBox={`0 0 300 ${screenSize.height}`}
-          style={{ borderWidth: '2px', borderColor: 'black', margin: '30px' }}
-        >
-          <Square
-            x={squareXY[0]}
-            y={squareXY[1]}
-            size={20}
-            handleClick={handleClick}
-          />
-          <Circle
-            x={circleXY[0]}
-            y={circleXY[1]}
-            radius={10}
-            handleCircleClick={handleCircleClick}
-          />
-          <Triangle
-            x={triangleXY[0]}
-            y={triangleXY[1]}
-            sideLength={20}
-            handleTriangleClick={handleTriangleClick}
-          />
-        </svg>
-        {isExploding && (
-          <Explode
-            x={explosionPosition[0] - 100}
-            y={explosionPosition[1] - 100}
-          />
+        {states.num.state !== 0 ? (
+          <>
+            <div className="flex justify-center items-center p-2">
+              <svg
+                viewBox={`0 0 300 ${states.screenSize.state.height}`}
+                className="border-4 border-primary m-8"
+              >
+                <Square
+                  x={states.squareXY.state[0]}
+                  y={states.squareXY.state[1]}
+                  size={20}
+                  handleClick={clicks.handleSquareClick}
+                />
+                <Circle
+                  x={states.circleXY.state[0]}
+                  y={states.circleXY.state[1]}
+                  radius={10}
+                  handleCircleClick={clicks.handleCircleClick}
+                />
+                <Triangle
+                  x={states.triangleXY.state[0]}
+                  y={states.triangleXY.state[1]}
+                  sideLength={20}
+                  handleTriangleClick={clicks.handleTriangleClick}
+                />
+              </svg>
+              {states.isExploding.state && (
+                <Explode
+                  x={states.explosionPosition.state[0] - 100}
+                  y={states.explosionPosition.state[1] - 100}
+                />
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl">
+            <GameOver score={states.count.state} />
+            <button
+              className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+              onClick={() => window.location.reload()}
+            >
+              Restart
+            </button>
+          </div>
         )}
       </div>
     </>
   )
 }
-
-//1340 855 game dimension
-//1440 1024 screen size
 
 export default Game

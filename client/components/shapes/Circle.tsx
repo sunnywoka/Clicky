@@ -11,6 +11,7 @@ function Circle(props: Props) {
   return (
     <svg style={{ overflow: 'visible', position: 'absolute' }}>
       <circle
+        role="img"
         cx={props.x + 5}
         cy={props.y + 5}
         r={props.radius}
