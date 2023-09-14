@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import GameOver from './GameOver'
 import { Link } from 'react-router-dom'
 import Circle from './shapes/Circle'
 import Square from './shapes/Square'
@@ -52,6 +53,13 @@ function getRandomXY(heightValue: number) {
 }
 
 function Game() {
+
+  const [xy, setXY] = useState([getRandom()[0], getRandom()[1]])
+  const [circleXY, setCircleXY] = useState([getRandom()[0], getRandom()[1]])
+  const [triangleXY, setTriangleXY] = useState([getRandom()[0], getRandom()[1]])
+  const [count, setCount] = useState(0)
+  const [showDiv, setShowDiv] = useState(false)
+
   function getNewXY(coords1: number[], coords2: number[]) {
     let coords
     do {
@@ -110,10 +118,26 @@ function Game() {
   const [explosionPosition, setExplosionPosition] = useState([0, 0])
   //timer values
 
-  const [num, setNum] = useState(60)
 
-  const intervalRef = useRef()
-  const decreaseNum = () => setNum((prev) => prev - 1)
+
+  const [num, setNum] = useState(60)
+  const intervalRef = useRef() 
+
+ 
+  const decreaseNum = () => {
+    setNum((prev) => {
+      if (prev > 0) {
+        return prev - 1
+      } else {
+        clearInterval(intervalRef.current)
+          setShowDiv(true)
+        return 0
+      }
+    })
+    
+  }
+  
+
   const decreaseScore = () => setShapeScore((prev) => prev - 1)
 
   //Timer useEffect
@@ -165,12 +189,20 @@ function Game() {
       <button className="go-back-button">
         <Link to="/catagory"> Go Back </Link>
       </button>
+      <div className='game-over-container'>
+        <div className='game-over'>
+        { showDiv && <GameOver score={count} show={showDiv} />}
+        </div>
+        </div>
       <div>
         <h1>Clicky!</h1>
         <h2>Score: {count}</h2>
+        
         <div>
           <h2>{num}</h2>
         </div>
+        <div className='game-container'>
+        
       </div>
 
       <div className="flex justify-center items-center w-max h-max p-10">
@@ -197,6 +229,8 @@ function Game() {
             handleTriangleClick={handleTriangleClick}
           />
         </svg>
+        </div>
+
         {isExploding && (
           <Explode
             x={explosionPosition[0] - 100}

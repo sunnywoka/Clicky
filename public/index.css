@@ -1,0 +1,21 @@
+
+
+.game-over{
+    position: absolute;
+    z-index: 9;
+    top: 50%;
+    left: 45%;
+    justify-content: center;
+    border: 5px;
+    text-align: center;
+    background-color: hotpink;
+}
+
+.game-container{
+    position: relative;    border: 5px;
+
+}
+
+.game-over-container{
+    border: 5px;
+}
