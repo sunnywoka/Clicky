@@ -7,9 +7,7 @@ import Explode from './Explode'
 import useGame from './hooks/useGame'
 
 function Game() {
-
   const { states, effects, clicks } = useGame()
-
 
   return (
     <>
@@ -24,46 +22,46 @@ function Game() {
           >
             Go Back
           </Link>
-          <h2 className="text-center flex-grow">Time: {num}</h2>
-          <h2 className="ml-auto">Score: {count}</h2>
+          <h2 className="text-center flex-grow">Time: {states.num.state}</h2>
+          <h2 className="ml-auto">Score: {states.count.state}</h2>
         </div>
-        {num !== 0 ? (
+        {states.num.state !== 0 ? (
           <>
             <div className="flex justify-center items-center p-2">
               <svg
-                viewBox={`0 0 300 ${screenSize.height}`}
+                viewBox={`0 0 300 ${states.screenSize.state.height}`}
                 className="border-4 border-primary m-8"
               >
                 <Square
-                  x={squareXY[0]}
-                  y={squareXY[1]}
+                  x={states.squareXY.state[0]}
+                  y={states.squareXY.state[1]}
                   size={20}
-                  handleClick={handleClick}
+                  handleClick={clicks.handleSquareClick}
                 />
                 <Circle
-                  x={circleXY[0]}
-                  y={circleXY[1]}
+                  x={states.circleXY.state[0]}
+                  y={states.circleXY.state[1]}
                   radius={10}
-                  handleCircleClick={handleCircleClick}
+                  handleCircleClick={clicks.handleCircleClick}
                 />
                 <Triangle
-                  x={triangleXY[0]}
-                  y={triangleXY[1]}
+                  x={states.triangleXY.state[0]}
+                  y={states.triangleXY.state[1]}
                   sideLength={20}
-                  handleTriangleClick={handleTriangleClick}
+                  handleTriangleClick={clicks.handleTriangleClick}
                 />
               </svg>
-              {isExploding && (
+              {states.isExploding.state && (
                 <Explode
-                  x={explosionPosition[0] - 100}
-                  y={explosionPosition[1] - 100}
+                  x={states.explosionPosition.state[0] - 100}
+                  y={states.explosionPosition.state[1] - 100}
                 />
               )}
             </div>
           </>
         ) : (
           <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl">
-            <GameOver score={count} />
+            <GameOver score={states.count.state} />
             <button
               className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
               onClick={() => window.location.reload()}
