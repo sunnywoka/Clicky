@@ -27,8 +27,8 @@ function getCurrentDimention() {
     case height < 650:
       newHeight /= 3
       break
-    case height < 900:
-      newHeight /= 6
+    case height <= 1100:
+      newHeight /= 8
       break
     case height > 1100:
       newHeight /= 9
@@ -52,6 +52,14 @@ function getRandomXY(heightValue: number) {
 }
 
 function Game() {
+  function getNewXY(coords1: number[], coords2: number[]) {
+    let coords
+    do {
+      coords = getRandomXY(screenSize.height)
+    } while (isTooClose(coords, coords1, 40) || isTooClose(coords, coords2, 40))
+    return coords
+  }
+
   function getRandom() {
     const squareXY = getRandomXY(screenSize.height)
     let circleXY, triangleXY
@@ -71,22 +79,6 @@ function Game() {
 
   //Screen Size
   const [screenSize, setScreenSize] = useState(getCurrentDimention)
-
-  // //Shapes
-  // const [squareXY, setSquareXY] = useState([
-  //   getRandomWidth(),
-  //   getRandomHeight(screenSize.height),
-  // ])
-  // const [circleXY, setCircleXY] = useState([
-  //   getRandomWidth(),
-  //   getRandomHeight(screenSize.height),
-  // ])
-  // const [triangleXY, setTriangleXY] = useState([
-  //   getRandomWidth(),
-  //   getRandomHeight(screenSize.height),
-  // ])
-  // //Score
-
   const [squareXY, setSquareXY] = useState([0, 0])
   const [circleXY, setCircleXY] = useState([0, 0])
   const [triangleXY, setTriangleXY] = useState([0, 0])
@@ -96,7 +88,9 @@ function Game() {
     setSquareXY(xy[0])
     setCircleXY(xy[1])
     setTriangleXY(xy[2])
+  }, [])
 
+  useEffect(() => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimention())
     }
@@ -105,6 +99,7 @@ function Game() {
       window.removeEventListener('resize', updateDimension)
     }
   }, [])
+  console.log(screenSize)
 
   const [count, setCount] = useState(0)
   const [shapeScore, setShapeScore] = useState(100)
@@ -128,47 +123,23 @@ function Game() {
     return () => clearInterval(intervalRef.current)
   }, [])
 
-  //Responsive useEffect
-  // useEffect(() => {
-  //   const updateDimension = () => {
-  //     setScreenSize(getCurrentDimention())
-  //   }
-  //   window.addEventListener('resize', updateDimension)
-  //   return () => {
-  //     window.removeEventListener('resize', updateDimension)
-  //   }
-  // }, [])
-  //console.log(screenSize)
-
-  // //click handlers
-  // function handleClick() {
-  //   setSquareXY([getRandomWidth(), getRandomHeight(screenSize.height)])
-
   //click handlers
-  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleClick(e: React.MouseEvent<SVGRectElement>) {
     setSquareXY(getNewXY(circleXY, triangleXY))
-
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
   }
 
-  // <<<<<<< HEAD
-  //   function handleCircleClick() {
-  //     setCircleXY([getRandomWidth(), getRandomHeight(screenSize.height)])
-  // =======
-  function handleCircleClick(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleCircleClick(e: React.MouseEvent<SVGCircleElement>) {
     setCircleXY(getNewXY(squareXY, triangleXY))
+    console.log(circleXY)
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
   }
-  // <<<<<<< HEAD
-  //   function handleTriangleClick() {
-  //     setTriangleXY([getRandomWidth(), getRandomHeight(screenSize.height)])
-  // =======
 
-  function handleTriangleClick(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleTriangleClick(e: React.MouseEvent<SVGPolygonElement>) {
     setTriangleXY(getNewXY(squareXY, circleXY))
     setCount(count + shapeScore)
     setShapeScore(100)
@@ -176,20 +147,17 @@ function Game() {
   }
 
   //explode function
-  function explode(e: React.MouseEvent<HTMLButtonElement>) {
+  function explode(
+    e:
+      | React.MouseEvent<SVGRectElement>
+      | React.MouseEvent<SVGCircleElement>
+      | React.MouseEvent<SVGPolygonElement>
+  ) {
     setExplosionPosition([e.pageX, e.pageY])
     setIsExploding(true)
     setTimeout(() => {
       setIsExploding(false)
     }, 250)
-  }
-
-  function getNewXY(coords1: number[], coords2: number[]) {
-    let coords
-    do {
-      coords = getRandomXY(screenSize.height)
-    } while (isTooClose(coords, coords1, 40) || isTooClose(coords, coords2, 40))
-    return coords
   }
 
   return (
@@ -214,19 +182,19 @@ function Game() {
             x={squareXY[0]}
             y={squareXY[1]}
             size={20}
-            handleClick={() => handleClick}
+            handleClick={handleClick}
           />
           <Circle
             x={circleXY[0]}
             y={circleXY[1]}
             radius={10}
-            handleCircleClick={() => handleCircleClick}
+            handleCircleClick={handleCircleClick}
           />
           <Triangle
             x={triangleXY[0]}
             y={triangleXY[1]}
             sideLength={20}
-            handleTriangleClick={() => handleTriangleClick}
+            handleTriangleClick={handleTriangleClick}
           />
         </svg>
         {isExploding && (
