@@ -7,7 +7,7 @@ import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 
 import * as coord from './coordinatefunctions'
-
+import * as click from './clickhandlers'
 function Game() {
   //Screen Size
   const [screenSize, setScreenSize] = useState(coord.getCurrentDimension)
@@ -67,12 +67,6 @@ function Game() {
   }, [])
 
   //click handlers
-  function handleClick(e: React.MouseEvent<SVGRectElement>) {
-    setSquareXY(coord.getNewXY(circleXY, triangleXY, screenSize))
-    setCount(count + shapeScore)
-    setShapeScore(100)
-    explode(e)
-  }
 
   function handleCircleClick(e: React.MouseEvent<SVGCircleElement>) {
     setCircleXY(coord.getNewXY(squareXY, triangleXY, screenSize))
@@ -131,7 +125,20 @@ function Game() {
               x={squareXY[0]}
               y={squareXY[1]}
               size={20}
-              handleClick={handleClick}
+              handleClick={(e) =>
+                click.handleSquareClick(
+                  e,
+                  circleXY,
+                  triangleXY,
+                  screenSize,
+                  setSquareXY,
+                  count,
+                  setCount,
+                  shapeScore,
+                  setShapeScore,
+                  explode
+                )
+              }
             />
             <Circle
               x={circleXY[0]}
