@@ -4,8 +4,6 @@ interface Props {
   }
   
 function GameOver(props:Props) {
-console.log('re render')
-console.log(props.show)
   return (
     <div>
       {props.show? <div>Your score is {props.score}</div> : ''}
