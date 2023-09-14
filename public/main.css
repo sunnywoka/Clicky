@@ -545,20 +545,12 @@ video {
   height: 100%;
 }
 
-.h-max {
-  height: max-content;
-}
-
 .h-screen {
   height: 100vh;
 }
 
 .w-64 {
   width: 16rem;
-}
-
-.w-max {
-  width: max-content;
 }
 
 .-scale-x-100 {
@@ -602,10 +594,6 @@ video {
 .bg-pink4 {
   --tw-bg-opacity: 1;
   background-color: rgb(250 221 225 / var(--tw-bg-opacity));
-}
-
-.p-10 {
-  padding: 2.5rem;
 }
 
 .p-2 {

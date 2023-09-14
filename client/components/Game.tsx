@@ -53,13 +53,6 @@ function getRandomXY(heightValue: number) {
 }
 
 function Game() {
-
-  const [xy, setXY] = useState([getRandom()[0], getRandom()[1]])
-  const [circleXY, setCircleXY] = useState([getRandom()[0], getRandom()[1]])
-  const [triangleXY, setTriangleXY] = useState([getRandom()[0], getRandom()[1]])
-  const [count, setCount] = useState(0)
-  const [showDiv, setShowDiv] = useState(false)
-
   function getNewXY(coords1: number[], coords2: number[]) {
     let coords
     do {
@@ -90,6 +83,7 @@ function Game() {
   const [squareXY, setSquareXY] = useState([0, 0])
   const [circleXY, setCircleXY] = useState([0, 0])
   const [triangleXY, setTriangleXY] = useState([0, 0])
+  const [showDiv, setShowDiv] = useState(false)
 
   useEffect(() => {
     const xy = getRandom()
@@ -117,26 +111,20 @@ function Game() {
   const [isExploding, setIsExploding] = useState(false)
   const [explosionPosition, setExplosionPosition] = useState([0, 0])
   //timer values
-
-
-
   const [num, setNum] = useState(60)
-  const intervalRef = useRef() 
+  const intervalRef = useRef()
 
- 
   const decreaseNum = () => {
     setNum((prev) => {
       if (prev > 0) {
         return prev - 1
       } else {
         clearInterval(intervalRef.current)
-          setShowDiv(true)
+        setShowDiv(true)
         return 0
       }
     })
-    
   }
-  
 
   const decreaseScore = () => setShapeScore((prev) => prev - 1)
 
@@ -189,46 +177,44 @@ function Game() {
       <button className="go-back-button">
         <Link to="/catagory"> Go Back </Link>
       </button>
-      <div className='game-over-container'>
-        <div className='game-over'>
-        { showDiv && <GameOver score={count} show={showDiv} />}
+      <div className="game-over-container">
+        <div className="game-over">
+          {showDiv && <GameOver score={count} show={showDiv} />}
         </div>
-        </div>
+      </div>
       <div>
         <h1>Clicky!</h1>
         <h2>Score: {count}</h2>
-        
+
         <div>
           <h2>{num}</h2>
         </div>
-        <div className='game-container'>
-        
-      </div>
+        <div className="game-container"></div>
 
-      <div className="flex justify-center items-center p-2">
-        <svg
-          viewBox={`0 0 300 ${screenSize.height}`}
-          style={{ borderWidth: '2px', borderColor: 'black', margin: '30px' }}
-        >
-          <Square
-            x={squareXY[0]}
-            y={squareXY[1]}
-            size={20}
-            handleClick={handleClick}
-          />
-          <Circle
-            x={circleXY[0]}
-            y={circleXY[1]}
-            radius={10}
-            handleCircleClick={handleCircleClick}
-          />
-          <Triangle
-            x={triangleXY[0]}
-            y={triangleXY[1]}
-            sideLength={20}
-            handleTriangleClick={handleTriangleClick}
-          />
-        </svg>
+        <div className="flex justify-center items-center p-2">
+          <svg
+            viewBox={`0 0 300 ${screenSize.height}`}
+            style={{ borderWidth: '2px', borderColor: 'black', margin: '30px' }}
+          >
+            <Square
+              x={squareXY[0]}
+              y={squareXY[1]}
+              size={20}
+              handleClick={handleClick}
+            />
+            <Circle
+              x={circleXY[0]}
+              y={circleXY[1]}
+              radius={10}
+              handleCircleClick={handleCircleClick}
+            />
+            <Triangle
+              x={triangleXY[0]}
+              y={triangleXY[1]}
+              sideLength={20}
+              handleTriangleClick={handleTriangleClick}
+            />
+          </svg>
         </div>
 
         {isExploding && (
