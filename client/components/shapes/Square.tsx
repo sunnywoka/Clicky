@@ -2,7 +2,7 @@ interface Props {
   x: number
   y: number
   size: number
-  handleClick: () => void
+  handleClick: (e: React.MouseEvent<SVGRectElement>) => void
 }
 
 function Square(props: Props) {

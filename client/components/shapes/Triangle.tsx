@@ -2,7 +2,7 @@ interface Props {
   x: number
   y: number
   sideLength: number
-  handleTriangleClick: () => void
+  handleTriangleClick: (e: React.MouseEvent<SVGPolygonElement>) => void
 }
 function Triangle(props: Props) {
   const side = props.sideLength

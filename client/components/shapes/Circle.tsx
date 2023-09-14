@@ -2,14 +2,14 @@ interface Props {
   x: number
   y: number
   radius: number
-  handleCircleClick: () => void
+  handleCircleClick: (e: React.MouseEvent<SVGCircleElement>) => void
 }
 
 //cy and cy need to be tweaked when we start displaying shapes in
 
 function Circle(props: Props) {
   return (
-    <svg style={{ overflow: 'visible' }}>
+    <svg style={{ overflow: 'visible', position: 'absolute' }}>
       <circle
         cx={props.x + 5}
         cy={props.y + 5}
