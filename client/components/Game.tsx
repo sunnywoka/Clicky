@@ -1,14 +1,15 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import GameOver from './GameOver'
 import { Link } from 'react-router-dom'
 import Circle from './shapes/Circle'
 import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
+
 import useGame from './hooks/useGame'
 
 function Game() {
-  const { states, effects, clicks } = useGame()
-
+  const { states, effects, clicks, audio } = useGame()
   return (
     <>
       <div>
@@ -25,6 +26,13 @@ function Game() {
           <h2 className="text-center flex-grow">Time: {states.num.state}</h2>
           <h2 className="ml-auto">Score: {states.count.state}</h2>
         </div>
+        <div>
+          <audio ref={audio.audioRef}>
+            <source src="../../src/click.wav" type="audio/mpeg" />
+            <p>Your browser does not support the audio element.</p>
+          </audio>
+        </div>
+
         {states.num.state !== 0 ? (
           <>
             <div className="flex justify-center items-center p-2">

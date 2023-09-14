@@ -70,6 +70,7 @@ function useGame() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
+    handlePlay()
   }
   function handleCircleClick(e: React.MouseEvent<SVGCircleElement>) {
     setCircleXY(coord.getNewXY(squareXY, triangleXY, screenSize))
@@ -77,6 +78,7 @@ function useGame() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
+    handlePlay()
   }
 
   function handleTriangleClick(e: React.MouseEvent<SVGPolygonElement>) {
@@ -84,6 +86,12 @@ function useGame() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
+    handlePlay()
+  }
+
+  const audioRef = useRef(null)
+  const handlePlay = () => {
+    audioRef.current.play()
   }
 
   const states = {
@@ -108,7 +116,8 @@ function useGame() {
     timerEffect,
   }
   const clicks = { handleTriangleClick, handleCircleClick, handleSquareClick }
-  return { states, effects, clicks }
+  const audio = { audioRef }
+  return { states, effects, clicks, audio }
 }
 
 export default useGame
