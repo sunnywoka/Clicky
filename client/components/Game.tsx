@@ -27,7 +27,7 @@ function Game() {
   //timer values
 
 
-  const [num, setNum] = useState(60)
+  const [num, setNum] = useState(2)
   const intervalRef = useRef() 
 
  
@@ -77,13 +77,19 @@ function Game() {
       <button className="go-back-button">
         <Link to="/catagory"> Go Back </Link>
       </button>
+      <div className='game-over-container'>
+        <div className='game-over'>
+        { showDiv && <GameOver score={count} show={showDiv} />}
+        </div>
+        </div>
       <div>
         <h1>Clicky!</h1>
         <h2>Score: {count}</h2>
-        { showDiv && <GameOver score={count} show={showDiv} />}
+        
         <div>
           <h2>{num}</h2>
         </div>
+        <div className='game-container'>
         <svg viewBox="0 0 300 130" style={{ border: 'solid' }}>
           <Square x={xy[0]} y={xy[1]} size={20} handleClick={handleClick} />
           <Circle
@@ -99,6 +105,7 @@ function Game() {
             handleTriangleClick={handleTriangleClick}
           />
         </svg>
+        </div>
       </div>
     </>
   )

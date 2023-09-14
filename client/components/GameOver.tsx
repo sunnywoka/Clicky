@@ -6,7 +6,7 @@ interface Props {
 function GameOver(props:Props) {
   return (
     <div>
-      {props.show? <div>Your score is {props.score}</div> : ''}
+      {props.show? <div>Game Over<br/>Your score is {props.score}</div> : ''}
     </div>
   )
 }
