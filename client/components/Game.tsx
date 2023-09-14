@@ -205,7 +205,7 @@ function Game() {
         
       </div>
 
-      <div className="flex justify-center items-center w-max h-max p-10">
+      <div className="flex justify-center items-center p-2">
         <svg
           viewBox={`0 0 300 ${screenSize.height}`}
           style={{ borderWidth: '2px', borderColor: 'black', margin: '30px' }}
