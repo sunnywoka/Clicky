@@ -2,7 +2,7 @@ interface Props {
   x: number
   y: number
   radius: number
-  handleCircleClick: () => void
+  handleCircleClick: (e: React.MouseEvent<SVGCircleElement>) => void
 }
 
 //cy and cy need to be tweaked when we start displaying shapes in
