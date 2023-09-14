@@ -9,6 +9,7 @@ function Square(props: Props) {
   return (
     <svg style={{ overflow: 'visible', position: 'absolute' }}>
       <rect
+        role="img"
         x={props.x}
         y={props.y}
         width={props.size}
