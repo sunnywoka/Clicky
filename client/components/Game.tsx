@@ -4,6 +4,7 @@ import Circle from './shapes/Circle'
 import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
+/* eslint-disable jsx-a11y/media-has-caption */
 
 function getRandomWidth() {
   return Math.floor(Math.random() * 275) + 5
@@ -129,6 +130,21 @@ function Game() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
+    handlePlay1()
+  }
+
+  const audioRef1 = useRef(null)
+  const audioRef2 = useRef(null)
+
+  const audioRef3 = useRef(null)
+  const handlePlay1 = () => {
+    audioRef1.current.play()
+  }
+  const handlePlay2 = () => {
+    audioRef2.current.play()
+  }
+  const handlePlay3 = () => {
+    audioRef3.current.play()
   }
 
   function handleCircleClick(e: React.MouseEvent<SVGCircleElement>) {
@@ -137,6 +153,7 @@ function Game() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
+    handlePlay2()
   }
 
   function handleTriangleClick(e: React.MouseEvent<SVGPolygonElement>) {
@@ -144,6 +161,7 @@ function Game() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
+    handlePlay3()
   }
 
   //explode function
@@ -171,6 +189,25 @@ function Game() {
         <div>
           <h2>{num}</h2>
         </div>
+      </div>
+
+      <div>
+        <audio ref={audioRef1}>
+          <source src="../../src/4.wav" type="audio/mpeg" />
+          <p>Your browser does not support the audio element.</p>
+        </audio>
+      </div>
+      <div>
+        <audio ref={audioRef2}>
+          <source src="../../src/4.wav" type="audio/mpeg" />
+          <p>Your browser does not support the audio element.</p>
+        </audio>
+      </div>
+      <div>
+        <audio ref={audioRef3}>
+          <source src="../../src/4.wav" type="audio/mpeg" />
+          <p>Your browser does not support the audio element.</p>
+        </audio>
       </div>
 
       <div className="flex justify-center items-center w-max h-max p-10">
