@@ -130,22 +130,22 @@ function Game() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
-    handlePlay1()
+    handlePlay()
   }
 
-  const audioRef1 = useRef(null)
-  const audioRef2 = useRef(null)
+  const audioRef = useRef(null)
+  // const audioRef2 = useRef(null)
 
-  const audioRef3 = useRef(null)
-  const handlePlay1 = () => {
-    audioRef1.current.play()
+  // const audioRef3 = useRef(null)
+  const handlePlay = () => {
+    audioRef.current.play()
   }
-  const handlePlay2 = () => {
-    audioRef2.current.play()
-  }
-  const handlePlay3 = () => {
-    audioRef3.current.play()
-  }
+  // const handlePlay2 = () => {
+  //   audioRef2.current.play()
+  // }
+  // const handlePlay3 = () => {
+  //   audioRef3.current.play()
+  // }
 
   function handleCircleClick(e: React.MouseEvent<SVGCircleElement>) {
     setCircleXY(getNewXY(squareXY, triangleXY))
@@ -153,7 +153,7 @@ function Game() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
-    handlePlay2()
+    handlePlay()
   }
 
   function handleTriangleClick(e: React.MouseEvent<SVGPolygonElement>) {
@@ -161,7 +161,7 @@ function Game() {
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
-    handlePlay3()
+    handlePlay()
   }
 
   //explode function
@@ -192,12 +192,12 @@ function Game() {
       </div>
 
       <div>
-        <audio ref={audioRef1}>
+        <audio ref={audioRef}>
           <source src="../../src/4.wav" type="audio/mpeg" />
           <p>Your browser does not support the audio element.</p>
         </audio>
       </div>
-      <div>
+      {/* <div>
         <audio ref={audioRef2}>
           <source src="../../src/4.wav" type="audio/mpeg" />
           <p>Your browser does not support the audio element.</p>
@@ -208,7 +208,7 @@ function Game() {
           <source src="../../src/4.wav" type="audio/mpeg" />
           <p>Your browser does not support the audio element.</p>
         </audio>
-      </div>
+      </div> */}
 
       <div className="flex justify-center items-center w-max h-max p-10">
         <svg
