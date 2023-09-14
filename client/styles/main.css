@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .cat-btn {
+    @apply border-4 border-primary rounded;
+    @apply text-2xl text-primary text-center;
+    @apply m-4 p-20 w-[500px];
+    @apply whitespace-nowrap overflow-hidden text-ellipsis;
+    @apply hover:bg-pink2 hover:text-pink3 hover:animate-pulse;
+  }
+}
