@@ -5,7 +5,6 @@ function Home() {
   return (
     <div>
       <Header />
-      <hr className="border-4 border-primary" />
       <div className="flex justify-center items-center h-screen bg-pink3">
         <Link
           to="/catagory"
