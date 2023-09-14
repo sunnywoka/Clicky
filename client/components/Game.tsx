@@ -110,7 +110,7 @@ function Game() {
   const [isExploding, setIsExploding] = useState(false)
   const [explosionPosition, setExplosionPosition] = useState([0, 0])
   //timer values
-  const [num, setNum] = useState(2)
+  const [num, setNum] = useState(60)
   const intervalRef = useRef()
 
   const decreaseNum = () => {
@@ -219,9 +219,14 @@ function Game() {
             </div>
           </>
         ) : (
-          <div className="border-2 border-primary flex flex-col gap-20 justify-center items-center px-36 py-24 m-36">
+          <div className="border-2 border-primary flex flex-col gap-20 justify-center items-center p-36 m-36">
             <GameOver score={count} />
-            <button>Restart</button>
+            <button
+              className="border-4 rounded text-4xl font-bold text-primary border-primary px-24 py-18 hover:bg-primary hover:text-pink4 hover:animate-pulse"
+              onClick={() => window.location.reload()}
+            >
+              Restart
+            </button>
           </div>
         )}
       </div>
