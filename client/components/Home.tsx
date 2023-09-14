@@ -1,22 +1,15 @@
 import { Link } from 'react-router-dom'
+import Header from './Header'
 
 function Home() {
   return (
     <div>
-      <div className="flex justify-center items-center gap-80">
-        <img className="w-64 h-full" src="images/gun.png" alt="gun" />
-        <h1 className="text-8xl m-4 text-primary font-bold">Blicky</h1>
-        <img
-          className="w-64 h-full transform -scale-x-100"
-          src="images/gun.png"
-          alt="gun"
-        />
-      </div>
+      <Header />
       <hr className="border-4 border-primary" />
-      <div className="flex justify-center items-center h-screen bg-pink4">
+      <div className="flex justify-center items-center h-screen bg-pink3">
         <Link
           to="/catagory"
-          className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-primary hover:text-pink4 hover:animate-pulse"
+          className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
         >
           Choose Game Mode
         </Link>

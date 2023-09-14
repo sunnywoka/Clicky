@@ -53,6 +53,19 @@ function getRandomXY(heightValue: number) {
 }
 
 function Game() {
+  //Screen Size
+  const [screenSize, setScreenSize] = useState(getCurrentDimention)
+  const [squareXY, setSquareXY] = useState([0, 0])
+  const [circleXY, setCircleXY] = useState([0, 0])
+  const [triangleXY, setTriangleXY] = useState([0, 0])
+  const [count, setCount] = useState(0)
+  const [shapeScore, setShapeScore] = useState(100)
+  //explosion state
+  const [isExploding, setIsExploding] = useState(false)
+  const [explosionPosition, setExplosionPosition] = useState([0, 0])
+  //timer values
+  const [num, setNum] = useState(60)
+
   function getNewXY(coords1: number[], coords2: number[]) {
     let coords
     do {
@@ -78,12 +91,6 @@ function Game() {
     return [squareXY, circleXY, triangleXY]
   }
 
-  //Screen Size
-  const [screenSize, setScreenSize] = useState(getCurrentDimention)
-  const [squareXY, setSquareXY] = useState([0, 0])
-  const [circleXY, setCircleXY] = useState([0, 0])
-  const [triangleXY, setTriangleXY] = useState([0, 0])
-
   useEffect(() => {
     const xy = getRandom()
     setSquareXY(xy[0])
@@ -102,15 +109,6 @@ function Game() {
   }, [])
   console.log(screenSize)
 
-  const [count, setCount] = useState(0)
-  const [shapeScore, setShapeScore] = useState(100)
-  //Timer
-
-  //explosion state
-  const [isExploding, setIsExploding] = useState(false)
-  const [explosionPosition, setExplosionPosition] = useState([0, 0])
-  //timer values
-  const [num, setNum] = useState(60)
   const intervalRef = useRef()
 
   const decreaseNum = () => {
@@ -172,18 +170,20 @@ function Game() {
 
   return (
     <>
-      <button className="go-back-button">
-        <Link to="/catagory"> Go Back </Link>
-      </button>
-
       <div>
-        <h1>Clicky!</h1>
-        <h2>Score: {count}</h2>
-
-        <div>
-          <h2>{num}</h2>
+        <h1 className="text-6xl m-4 text-primary font-bold text-center">
+          Clicky!
+        </h1>
+        <div className="flex justify-center p-2 m-4 items-center text-3xl">
+          <Link
+            className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+            to="/catagory"
+          >
+            Go Back
+          </Link>
+          <h2 className="text-center flex-grow">Time: {num}</h2>
+          <h2 className="ml-auto">Score: {count}</h2>
         </div>
-
         {num !== 0 ? (
           <>
             <div className="flex justify-center items-center p-2">
@@ -219,10 +219,10 @@ function Game() {
             </div>
           </>
         ) : (
-          <div className="border-2 border-primary flex flex-col gap-20 justify-center items-center p-36 m-36">
+          <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl">
             <GameOver score={count} />
             <button
-              className="border-4 rounded text-4xl font-bold text-primary border-primary px-24 py-18 hover:bg-primary hover:text-pink4 hover:animate-pulse"
+              className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
               onClick={() => window.location.reload()}
             >
               Restart
@@ -233,8 +233,5 @@ function Game() {
     </>
   )
 }
-
-//1340 855 game dimension
-//1440 1024 screen size
 
 export default Game
