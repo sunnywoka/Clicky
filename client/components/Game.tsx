@@ -6,87 +6,18 @@ import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 
-function getRandomWidth() {
-  return Math.floor(Math.random() * 275) + 5
-}
-
-function getRandomHeight(heightValue: number) {
-  const height = Math.floor(Math.random() * heightValue)
-  return height <= heightValue && height >= heightValue - 50
-    ? height - 20
-    : height + 5
-}
-
-function getCurrentDimention() {
-  const height = window.innerHeight
-  const width = window.innerWidth
-  let newHeight: number = height
-  switch (true) {
-    case height < 650 && width < 450:
-      newHeight /= 2
-      break
-    case height < 650:
-      newHeight /= 3
-      break
-    case height <= 1100:
-      newHeight /= 8
-      break
-    case height > 1100:
-      newHeight /= 9
-      break
-  }
-  return {
-    width: window.innerWidth,
-    height: Math.floor(newHeight),
-  }
-}
-
-function isTooClose(coords1: number[], coords2: number[], minDistance: number) {
-  const distance = Math.sqrt(
-    (coords1[0] - coords2[0]) ** 2 + (coords1[1] - coords2[1]) ** 2
-  )
-  return distance < minDistance
-}
-
-function getRandomXY(heightValue: number) {
-  return [getRandomWidth(), getRandomHeight(heightValue)]
-}
+import * as coord from './coordinatefunctions'
 
 function Game() {
-  function getNewXY(coords1: number[], coords2: number[]) {
-    let coords
-    do {
-      coords = getRandomXY(screenSize.height)
-    } while (isTooClose(coords, coords1, 40) || isTooClose(coords, coords2, 40))
-    return coords
-  }
-
-  function getRandom() {
-    const squareXY = getRandomXY(screenSize.height)
-    let circleXY, triangleXY
-
-    do {
-      circleXY = getRandomXY(screenSize.height)
-    } while (isTooClose(squareXY, circleXY, 30))
-
-    do {
-      triangleXY = getRandomXY(screenSize.height)
-    } while (
-      isTooClose(squareXY, triangleXY, 30) ||
-      isTooClose(circleXY, triangleXY, 30)
-    )
-    return [squareXY, circleXY, triangleXY]
-  }
-
   //Screen Size
-  const [screenSize, setScreenSize] = useState(getCurrentDimention)
+  const [screenSize, setScreenSize] = useState(coord.getCurrentDimension)
   const [squareXY, setSquareXY] = useState([0, 0])
   const [circleXY, setCircleXY] = useState([0, 0])
   const [triangleXY, setTriangleXY] = useState([0, 0])
   const [showDiv, setShowDiv] = useState(false)
 
   useEffect(() => {
-    const xy = getRandom()
+    const xy = coord.getRandom(screenSize)
     setSquareXY(xy[0])
     setCircleXY(xy[1])
     setTriangleXY(xy[2])
@@ -94,7 +25,7 @@ function Game() {
 
   useEffect(() => {
     const updateDimension = () => {
-      setScreenSize(getCurrentDimention())
+      setScreenSize(coord.getCurrentDimension())
     }
     window.addEventListener('resize', updateDimension)
     return () => {
@@ -137,14 +68,14 @@ function Game() {
 
   //click handlers
   function handleClick(e: React.MouseEvent<SVGRectElement>) {
-    setSquareXY(getNewXY(circleXY, triangleXY))
+    setSquareXY(coord.getNewXY(circleXY, triangleXY, screenSize))
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
   }
 
   function handleCircleClick(e: React.MouseEvent<SVGCircleElement>) {
-    setCircleXY(getNewXY(squareXY, triangleXY))
+    setCircleXY(coord.getNewXY(squareXY, triangleXY, screenSize))
     console.log(circleXY)
     setCount(count + shapeScore)
     setShapeScore(100)
@@ -152,7 +83,7 @@ function Game() {
   }
 
   function handleTriangleClick(e: React.MouseEvent<SVGPolygonElement>) {
-    setTriangleXY(getNewXY(squareXY, circleXY))
+    setTriangleXY(coord.getNewXY(squareXY, circleXY, screenSize))
     setCount(count + shapeScore)
     setShapeScore(100)
     explode(e)
