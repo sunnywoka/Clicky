@@ -25,7 +25,7 @@ function BounceGame() {
         {!states.start.state ? (
           <div className="flex justify-center items-center h-screen">
             <button
-              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse animate-bounce"
+              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 animate-bounce"
               onClick={clicks.handleStartClick}
             >
               Start
@@ -35,7 +35,7 @@ function BounceGame() {
           <>
             <div className="flex justify-center p-2 m-4 items-center text-3xl">
               <Link
-                className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 hover:animate-pulse animate-bounce"
+                className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 animate-bounce"
                 to="/catagory"
               >
                 Go Back
@@ -86,10 +86,10 @@ function BounceGame() {
                 </div>
               </>
             ) : (
-              <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl">
+              <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl animate-bounce">
                 <GameOver score={states.count.state} />
                 <button
-                  className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+                  className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 animate-bounce"
                   onClick={() => window.location.reload()}
                 >
                   Restart
