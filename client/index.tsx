@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * TODO: replace the empty strings below with your own domain, clientId, and audience
      */
     <Auth0Provider
-      domain=""
-      clientId=""
+      domain="matai-humaid.us.auth0.com"
+      clientId="qWeAhx79FWhPsQGIsFhIbRNg3oxTS9lg"
       redirectUri={window.location.origin}
       audience=""
     >
