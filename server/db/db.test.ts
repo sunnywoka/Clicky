@@ -1,6 +1,6 @@
 import { expect, test, beforeAll, beforeEach } from 'vitest'
-import knex from 'knex'
-import knexfile from './knexfile.js'
+// import knex from 'knex'
+// import knexfile from './knexfile.js'
 import * as dbFunction from './db.ts'
 import db from './connection'
 // const db = knex(knexfile.test)
