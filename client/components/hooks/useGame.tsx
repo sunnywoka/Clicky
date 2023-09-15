@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import * as coord from '../coordinatefunctions'
 
 function useGame() {
@@ -6,23 +6,22 @@ function useGame() {
   const [squareXY, setSquareXY] = useState([0, 0])
   const [circleXY, setCircleXY] = useState([0, 0])
   const [triangleXY, setTriangleXY] = useState([0, 0])
-  const [showDiv, setShowDiv] = useState(false)
   const [num, setNum] = useState(60)
-
   const [count, setCount] = useState(0)
   const [shapeScore, setShapeScore] = useState(100)
-  const intervalRef = useRef()
-  const decreaseScore = () => setShapeScore((prev) => prev - 1)
-
+  const [start, setStart] = useState(false)
   const [isExploding, setIsExploding] = useState(false)
   const [explosionPosition, setExplosionPosition] = useState([0, 0])
+
+  const intervalRef = useRef()
+  const decreaseScore = () => setShapeScore((prev) => prev - 1)
 
   const coordEffect = useEffect(() => {
     const xy = coord.getRandom(screenSize)
     setSquareXY(xy[0])
     setCircleXY(xy[1])
     setTriangleXY(xy[2])
-  }, [])
+  }, [screenSize])
 
   const dimensionEffect = useEffect(() => {
     const updateDimension = () => {
@@ -35,10 +34,14 @@ function useGame() {
   }, [])
 
   const timerEffect = useEffect(() => {
-    intervalRef.current = setInterval(decreaseNum, 1000)
-    intervalRef.current = setInterval(decreaseScore, 100)
+    if (start) {
+      intervalRef.current = setInterval(decreaseNum, 1000)
+      intervalRef.current = setInterval(decreaseScore, 100)
+    } else {
+      clearInterval(intervalRef.current)
+    }
     return () => clearInterval(intervalRef.current)
-  }, [])
+  }, [start])
 
   const decreaseNum = () => {
     setNum((prev) => {
@@ -46,7 +49,6 @@ function useGame() {
         return prev - 1
       } else {
         clearInterval(intervalRef.current)
-        setShowDiv(true)
         return 0
       }
     })
@@ -65,10 +67,16 @@ function useGame() {
     }, 250)
   }
 
+  function handleStartClick(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    setStart(true)
+  }
+
   function handleMissClick(e: React.MouseEvent<SVGElement>) {
     e.preventDefault()
     if (e.target === e.currentTarget) {
       setCount(count - 50)
+      setShapeScore(100)
     }
   }
 
@@ -106,9 +114,9 @@ function useGame() {
     squareXY: { state: squareXY, function: setSquareXY },
     circleXY: { state: circleXY, function: setCircleXY },
     triangleXY: { state: triangleXY, function: setTriangleXY },
-    showDiv: { state: showDiv, function: setShowDiv },
     num: { state: num, function: setNum },
     count: { state: count, function: setCount },
+    start: { state: start, function: setStart },
     shapeScore: { state: shapeScore, function: setShapeScore },
     isExploding: { state: isExploding, function: setIsExploding },
     explosionPosition: {
@@ -127,6 +135,7 @@ function useGame() {
     handleCircleClick,
     handleSquareClick,
     handleMissClick,
+    handleStartClick,
   }
   const audio = { audioRef }
   return { states, effects, clicks, audio }
