@@ -8,13 +8,13 @@ import Explode from './Explode'
 
 import useGame from './hooks/useGame'
 
-function Game() {
+function BounceGame() {
   const { states, effects, clicks, audio } = useGame()
   return (
     <>
       <div>
-        <h1 className="text-6xl m-4 text-primary font-bold text-center">
-          Clicky!
+        <h1 className="text-6xl m-4 text-primary font-bold text-center animate-bounce">
+          Bounce!
         </h1>
         <div>
           <audio ref={audio.audioRef}>
@@ -25,7 +25,7 @@ function Game() {
         {!states.start.state ? (
           <div className="flex justify-center items-center h-screen">
             <button
-              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse animate-bounce"
               onClick={clicks.handleStartClick}
             >
               Start
@@ -35,22 +35,24 @@ function Game() {
           <>
             <div className="flex justify-center p-2 m-4 items-center text-3xl">
               <Link
-                className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+                className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 hover:animate-pulse animate-bounce"
                 to="/catagory"
               >
                 Go Back
               </Link>
-              <h2 className="text-center flex-grow">
+              <h2 className="text-center flex-grow animate-bounce">
                 Time: {states.num.state}
               </h2>
-              <h2 className="ml-auto">Score: {states.count.state}</h2>
+              <h2 className="ml-auto animate-bounce">
+                Score: {states.count.state}
+              </h2>
             </div>
             {states.num.state !== 0 ? (
               <>
                 <div className="flex justify-center items-center p-2">
                   <svg
                     viewBox={`0 0 300 ${states.screenSize.state.height}`}
-                    className="border-4 border-primary m-8"
+                    className="border-4 border-primary m-8 animate-bounce"
                     onClick={clicks.handleMissClick}
                   >
                     <Square
@@ -58,21 +60,21 @@ function Game() {
                       y={states.squareXY.state[1]}
                       size={20}
                       handleClick={clicks.handleSquareClick}
-                      className={""}
+                      className={'animate-bounce'}
                     />
                     <Circle
                       x={states.circleXY.state[0]}
                       y={states.circleXY.state[1]}
                       radius={10}
                       handleCircleClick={clicks.handleCircleClick}
-                      className={""}
+                      className={'animate-bounce'}
                     />
                     <Triangle
                       x={states.triangleXY.state[0]}
                       y={states.triangleXY.state[1]}
                       sideLength={20}
                       handleTriangleClick={clicks.handleTriangleClick}
-                      className={""}
+                      className={'animate-bounce'}
                     />
                   </svg>
                   {states.isExploding.state && (
@@ -101,4 +103,4 @@ function Game() {
   )
 }
 
-export default Game
+export default BounceGame

@@ -3,6 +3,7 @@ interface Props {
   y: number
   sideLength: number
   handleTriangleClick: (e: React.MouseEvent<SVGPolygonElement>) => void
+  className: string
 }
 function Triangle(props: Props) {
   const side = props.sideLength
@@ -21,6 +22,7 @@ function Triangle(props: Props) {
         role="img"
         points={`${x1} ${y1}, ${x2} ${y2}, ${x3} ${y3}`}
         onClick={props.handleTriangleClick}
+        className={props.className}
       />
     </svg>
   )

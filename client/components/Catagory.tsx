@@ -9,11 +9,11 @@ function Catagory() {
         Game Modes
       </h2>
       <div className="flex justify-center items-center gap-96 m-6">
-        <Link className="cat-btn" to="/blicky">
-          Blicky
+        <Link className="cat-btn" to="/clicky">
+          Clicky
         </Link>
-        <Link className="cat-btn" to="/2">
-          Game 2/ Difficulty
+        <Link className="cat-btn" to="/bounce">
+          Bounce
         </Link>
       </div>
 

@@ -3,6 +3,7 @@ import Game from './Game'
 import Home from './Home'
 import Catagory from './Catagory'
 import Explode from './Explode'
+import BounceGame from './BounceGame'
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catagory" element={<Catagory />} />
-        <Route path="/blicky" element={<Game />} />
+        <Route path="/clicky" element={<Game />} />
+        <Route path="/bounce" element={<BounceGame />} />
         <Route path="/explode" element={<Explode />} />
       </Routes>
     </>
