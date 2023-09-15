@@ -65,6 +65,13 @@ function useGame() {
     }, 250)
   }
 
+  function handleMissClick(e: React.MouseEvent<SVGElement>) {
+    e.preventDefault()
+    if (e.target === e.currentTarget) {
+      setCount(count - 50)
+    }
+  }
+
   function handleSquareClick(e: React.MouseEvent<SVGRectElement>) {
     setSquareXY(coord.getNewXY(circleXY, triangleXY, screenSize))
     setCount(count + shapeScore)
@@ -115,7 +122,12 @@ function useGame() {
     dimensionEffect,
     timerEffect,
   }
-  const clicks = { handleTriangleClick, handleCircleClick, handleSquareClick }
+  const clicks = {
+    handleTriangleClick,
+    handleCircleClick,
+    handleSquareClick,
+    handleMissClick,
+  }
   const audio = { audioRef }
   return { states, effects, clicks, audio }
 }
