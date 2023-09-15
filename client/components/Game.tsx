@@ -39,6 +39,7 @@ function Game() {
               <svg
                 viewBox={`0 0 300 ${states.screenSize.state.height}`}
                 className="border-4 border-primary m-8"
+                onClick={clicks.handleMissClick}
               >
                 <Square
                   x={states.squareXY.state[0]}
