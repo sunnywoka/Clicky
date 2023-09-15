@@ -3,6 +3,7 @@ interface Props {
   y: number
   size: number
   handleClick: (e: React.MouseEvent<SVGRectElement>) => void
+  className: string
 }
 
 function Square(props: Props) {
@@ -15,6 +16,7 @@ function Square(props: Props) {
         width={props.size}
         height={props.size}
         onClick={props.handleClick}
+        className={props.className}
       ></rect>
     </svg>
   )
