@@ -50,7 +50,7 @@ function Game() {
                 <div className="flex justify-center items-center p-2">
                   <svg
                     viewBox={`0 0 300 ${states.screenSize.state.height}`}
-                    className="border-4 border-primary m-8"
+                    className="border-4 border-primary m-8 cursor-crosshair"
                     onClick={clicks.handleMissClick}
                   >
                     <Square
@@ -58,21 +58,21 @@ function Game() {
                       y={states.squareXY.state[1]}
                       size={20}
                       handleClick={clicks.handleSquareClick}
-                      className={""}
+                      className={''}
                     />
                     <Circle
                       x={states.circleXY.state[0]}
                       y={states.circleXY.state[1]}
                       radius={10}
                       handleCircleClick={clicks.handleCircleClick}
-                      className={""}
+                      className={''}
                     />
                     <Triangle
                       x={states.triangleXY.state[0]}
                       y={states.triangleXY.state[1]}
                       sideLength={20}
                       handleTriangleClick={clicks.handleTriangleClick}
-                      className={""}
+                      className={''}
                     />
                   </svg>
                   {states.isExploding.state && (

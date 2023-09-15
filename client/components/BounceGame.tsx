@@ -52,7 +52,7 @@ function BounceGame() {
                 <div className="flex justify-center items-center p-2">
                   <svg
                     viewBox={`0 0 300 ${states.screenSize.state.height}`}
-                    className="border-4 border-primary m-8 animate-bounce"
+                    className="border-4 border-primary m-8 animate-bounce cursor-crosshair"
                     onClick={clicks.handleMissClick}
                   >
                     <Square
