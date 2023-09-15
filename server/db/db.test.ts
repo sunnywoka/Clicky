@@ -2,10 +2,8 @@ import { expect, test, beforeAll, beforeEach } from 'vitest'
 import knex from 'knex'
 import knexfile from './knexfile.js'
 import * as dbFunction from './db.ts'
-
-const db = knex(knexfile.test)
-
-// import db from './connection'
+import db from './connection'
+// const db = knex(knexfile.test)
 
 beforeAll(async () => {
   await db.migrate.latest()
