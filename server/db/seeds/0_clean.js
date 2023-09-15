@@ -1,3 +1,3 @@
 export function seed(knex) {
-  return knex('fruits').del()
+  return knex('scores').del()
 }
