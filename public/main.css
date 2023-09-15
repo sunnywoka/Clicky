@@ -634,10 +634,6 @@ video {
   animation: bounce 1s infinite;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .cursor-crosshair {
   cursor: crosshair;
 }
