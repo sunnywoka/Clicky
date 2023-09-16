@@ -1,21 +1,15 @@
-
-
-.game-over{
-    position: absolute;
-    z-index: 9;
-    top: 50%;
-    left: 45%;
-    justify-content: center;
-    border: 5px;
-    text-align: center;
-    background-color: hotpink;
+.spacer {
+  aspect-ratio: 960/150;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.game-container{
-    position: relative;    border: 5px;
-
+.layer1 {
+  background-image: url('images/layer1.svg');
 }
 
-.game-over-container{
-    border: 5px;
+.flip {
+  transform: rotate(180deg);
 }
