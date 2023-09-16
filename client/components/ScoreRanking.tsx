@@ -32,9 +32,9 @@ function ScoreRanking() {
           <th>Score</th>
           <th>Game mode</th>
         </tr>
-        {records.data?.sort(compareFn)?.map((Score) => (
+        {records.data?.sort(compareFn)?.map((Score, index) => (
           <tr key={Score.nickname}>
-            <th>1</th>
+            <th>{index + 1}</th>
             <th>{Score.nickname}</th>
             <th>{Score.score}</th>
             <th>{Score.mode}</th>
