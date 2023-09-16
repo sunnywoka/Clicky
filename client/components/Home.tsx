@@ -6,7 +6,11 @@ import ScoreButton from './ScoreButton'
 function Home() {
   return (
     <div>
+      <div className="flex justify-end m-5">
+        <LoginButton />
+      </div>
       <Header />
+
       <div className="flex justify-center items-center h-screen bg-pink3">
         <Link
           to="/category"
@@ -15,7 +19,6 @@ function Home() {
           Choose Game Mode
         </Link>
       </div>
-      <LoginButton />
       <ScoreButton />
     </div>
   )
