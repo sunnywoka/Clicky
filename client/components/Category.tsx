@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Header from './Header'
 
-function Catagory() {
+function Category() {
   return (
     <>
       <Header />
@@ -35,4 +35,4 @@ function Catagory() {
   )
 }
 
-export default Catagory
+export default Category
