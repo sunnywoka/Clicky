@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Header from './Header'
+import LoginButton from './LoginButton'
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
           Choose Game Mode
         </Link>
       </div>
+      <LoginButton />
     </div>
   )
 }

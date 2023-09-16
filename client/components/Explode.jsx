@@ -7,7 +7,7 @@ class Explode extends Component {
     return (
       <Explosion
         size="200"
-        color="orange"
+        color="#FF5D8F"
         delay={0}
         style={{ position: 'absolute', top: `${y}px`, left: `${x}px` }}
         repeatDelay={0}
