@@ -36,7 +36,7 @@ function BounceGame() {
             <div className="flex justify-center p-2 m-4 items-center text-3xl">
               <Link
                 className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 animate-bounce"
-                to="/catagory"
+                to="/category"
               >
                 Go Back
               </Link>
