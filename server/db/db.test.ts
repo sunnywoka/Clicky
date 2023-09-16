@@ -41,7 +41,7 @@ test('3. Add a new record to database and the database should have one extra rec
   expect(difference).toBe(1)
 })
 
-test('3. Add a new record to database and the database can get two scores for game ID 2', async () => {
+test('4. Add a new record to database and the database can get two scores for game ID 2', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
     score: 966,
@@ -60,7 +60,7 @@ test('3. Add a new record to database and the database can get two scores for ga
   ])
 })
 
-test('3. Add a new record to database and the database can get three scores for same Auth0 ID', async () => {
+test('5. Add a new record to database and the database can get three scores for same Auth0 ID', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
     score: 966,
