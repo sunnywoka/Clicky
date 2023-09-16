@@ -1,9 +1,9 @@
 import { getRecords } from '../../api'
 import { useQuery } from '@tanstack/react-query'
 
-function useRecord() {
-  const { data } = useQuery(['notifications'], getRecords)
+function useRecords() {
+  const { data } = useQuery(['records'], getRecords)
   return { data }
 }
 
-export default useRecord
+export default useRecords
