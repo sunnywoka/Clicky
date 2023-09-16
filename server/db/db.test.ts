@@ -30,6 +30,7 @@ test('2. List all score by auth0 ID', async () => {
 test('3. Add a new record to database and the database should have one extra record', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
+    nickname: 'Mr.Hum',
     score: 966,
     gameId: 1,
   }
@@ -44,17 +45,20 @@ test('3. Add a new record to database and the database should have one extra rec
 test('4. Add a new record to database and the database can get two scores for game ID 2', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
+    nickname: 'Mr.Hum',
     score: 966,
     gameId: 2,
   }
 
   await dbFunction.addNewScore(testRecord)
-  const gameId2Scores = await dbFunction.getPlayersScoresByGameID(2)
-  expect(gameId2Scores).toStrictEqual([
+  const gameId2Records = await dbFunction.getPlayersScoresByGameID(2)
+  expect(gameId2Records).toStrictEqual([
     {
+      nickname: 'Mr.Hum',
       score: 600,
     },
     {
+      nickname: 'Mr.Hum',
       score: 966,
     },
   ])
@@ -63,22 +67,26 @@ test('4. Add a new record to database and the database can get two scores for ga
 test('5. Add a new record to database and the database can get three scores for same Auth0 ID', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
+    nickname: 'Mr.Hum',
     score: 966,
     gameId: 2,
   }
 
   await dbFunction.addNewScore(testRecord)
-  const gameAuth0Scores = await dbFunction.getPlayersScoresByAuth0ID(
+  const gameAuth0Records = await dbFunction.getPlayersScoresByAuth0ID(
     'auth0|6478f3fd75374ee3d7bc4d94'
   )
-  expect(gameAuth0Scores).toStrictEqual([
+  expect(gameAuth0Records).toStrictEqual([
     {
+      nickname: 'Mr.Hum',
       score: 500,
     },
     {
+      nickname: 'Mr.Hum',
       score: 600,
     },
     {
+      nickname: 'Mr.Hum',
       score: 966,
     },
   ])
