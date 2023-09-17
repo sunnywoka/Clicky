@@ -5,18 +5,18 @@ function LoginButton() {
   const { loginWithRedirect, logout } = useAuth0()
 
   return (
-    <div className="flex justify-center items-center">
+    <>
       <IfNotAuthenticated>
-        <button onClick={() => loginWithRedirect()} className="log-btn">
+        <button onClick={() => loginWithRedirect()} className="home-btn">
           Log In
         </button>
       </IfNotAuthenticated>
       <IfAuthenticated>
-        <button onClick={() => logout()} className="log-btn">
+        <button onClick={() => logout()} className="home-btn">
           Log Out
         </button>
       </IfAuthenticated>
-    </div>
+    </>
   )
 }
 

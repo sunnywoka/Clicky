@@ -557,7 +557,7 @@ video {
   color: rgb(250 221 225 / var(--tw-text-opacity));
 }
 
-.log-btn {
+.home-btn {
   border-radius: 0.25rem;
   border-width: 4px;
   --tw-border-opacity: 1;
@@ -579,7 +579,7 @@ video {
   }
 }
 
-.log-btn:hover {
+.home-btn:hover {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --tw-bg-opacity: 1;
   background-color: rgb(255 166 193 / var(--tw-bg-opacity));
@@ -619,11 +619,6 @@ video {
   margin: 2rem;
 }
 
-.-mx-0 {
-  margin-left: -0px;
-  margin-right: -0px;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -651,10 +646,6 @@ video {
 
 .flex-grow {
   flex-grow: 1;
-}
-
-.table-auto {
-  table-layout: auto;
 }
 
 .-scale-x-100 {
@@ -694,10 +685,6 @@ video {
   flex-direction: column;
 }
 
-.content-center {
-  align-content: center;
-}
-
 .items-center {
   align-items: center;
 }
@@ -718,12 +705,28 @@ video {
   gap: 24rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-10 {
+  gap: 2.5rem;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
 
 .border-4 {
   border-width: 4px;
+}
+
+.border-2 {
+  border-width: 2px;
 }
 
 .border-primary {
@@ -769,6 +772,61 @@ video {
   padding-bottom: 6rem;
 }
 
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.py-\[72px\] {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+.py-\[68px\] {
+  padding-top: 68px;
+  padding-bottom: 68px;
+}
+
+.py-\[64px\] {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.py-\[70px\] {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.py-14 {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -807,6 +865,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -814,11 +877,6 @@ video {
 .text-primary {
   --tw-text-opacity: 1;
   color: rgb(255 93 143 / var(--tw-text-opacity));
-}
-
-.text-pink3 {
-  --tw-text-opacity: 1;
-  color: rgb(250 221 225 / var(--tw-text-opacity));
 }
 
 @keyframes pulse {
