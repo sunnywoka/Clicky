@@ -37,6 +37,7 @@
     "express-oauth2-jwt-bearer": "^1.5.0",
     "jwks-rsa": "^2.1.5",
     "knex": "^2.5.1",
+    "nock": "^13.3.3",
     "react-explode": "^2.0.5",
     "sqlite3": "^5.1.6",
     "use-sound": "^4.0.1"
