@@ -25,22 +25,39 @@ function ScoreRanking() {
       <h2 className="text-5xl m-12 text-primary font-bold text-center">
         Score Ranking
       </h2>
-      <table>
+      <table className="mx-auto">
         <tr>
-          <th>Order</th>
-          <th>Nickname</th>
-          <th>Score</th>
-          <th>Game mode</th>
+          <th className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse">
+            Order
+          </th>
+          <th className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse">
+            Nickname
+          </th>
+          <th className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse">
+            Score
+          </th>
+          <th className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse">
+            Game mode
+          </th>
         </tr>
         {records.data?.sort(compareFn)?.map((Score, index) => (
           <tr key={Score.nickname}>
-            <th>{index + 1}</th>
-            <th>{Score.nickname}</th>
-            <th>{Score.score}</th>
-            <th>{Score.mode}</th>
+            <th className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse">
+              {index + 1}
+            </th>
+            <th className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse">
+              {Score.nickname}
+            </th>
+            <th className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse">
+              {Score.score}
+            </th>
+            <th className="border-4 rounded text-4xl font-bold text-primary border-primary px-36 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse">
+              {Score.mode}
+            </th>
           </tr>
         ))}
       </table>
+      <div className="spacer layer1 flip"></div>
     </>
   )
 }
