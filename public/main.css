@@ -599,6 +599,10 @@ video {
   margin: 3rem;
 }
 
+.m-24 {
+  margin: 6rem;
+}
+
 .m-36 {
   margin: 9rem;
 }
@@ -613,10 +617,6 @@ video {
 
 .m-8 {
   margin: 2rem;
-}
-
-.m-24 {
-  margin: 6rem;
 }
 
 .ml-auto {
