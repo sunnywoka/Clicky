@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Header from './Header'
 import LoginButton from './LoginButton'
+import ScoreButton from './ScoreButton'
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
           </Link>
         </div>
         <LoginButton />
+        <ScoreButton />
         <div className="spacer layer1 flip"></div>
       </section>
     </>
