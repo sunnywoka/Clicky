@@ -64,3 +64,16 @@ test('clicky game displays correct score on initial click', async ({
     page.getByRole('heading', { level: 2, name: 'Score: 100' })
   ).toBeVisible()
 })
+
+test('score changes based on time', async ({ page }) => {
+  await page.goto('http://localhost:5173/clicky')
+
+  await page.getByRole('button', { name: 'Start' }).click()
+  await page.evaluate(() => window.__clock.tick(200))
+  await page.getByTestId('square-rect').click()
+  console.log(
+    await expect(
+      page.getByRole('heading', { level: 2, name: 'Score: 98' })
+    ).toBeVisible()
+  )
+})
