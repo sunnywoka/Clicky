@@ -43,7 +43,9 @@ function Game() {
               <h2 className="text-center flex-grow">
                 Time: {states.num.state}
               </h2>
-              <h2 className="ml-auto">Score: {states.count.state}</h2>
+              <h2 className="ml-auto" data-testid="score">
+                Score: {states.count.state}
+              </h2>
             </div>
             {states.num.state !== 0 ? (
               <>
