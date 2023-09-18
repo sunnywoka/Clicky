@@ -1,20 +1,10 @@
 import Header from './Header'
 import useRecord from './hooks/useRecords'
-
-interface Record {
-  nickname: string
-  score: number
-  mode: string
-}
+import { Record } from '../../models/Record'
 
 function ScoreRanking() {
   function compareFn(a: Record, b: Record) {
-    if (a.score > b.score) {
-      return -1
-    } else if (a.score < b.score) {
-      return 1
-    }
-    return 0
+    return b.score - a.score
   }
 
   const records = useRecord()
@@ -40,27 +30,29 @@ function ScoreRanking() {
             Game mode
           </th>
         </tr>
-        {records.data?.sort(compareFn)?.map((Score, index, array) => (
-          <tr
-            key={Score.nickname}
-            className={
-              index === array.length - 1 ? 'border-b-2 border-primary' : ''
-            }
-          >
-            <td className="border-y-2 border-l-2 text-4xl text-primary border-primary px-24 py-4">
-              {index + 1}
-            </td>
-            <td className="border-y-2 text-4xl text-primary border-primary px-24 py-4">
-              {Score.nickname}
-            </td>
-            <td className="border-y-2 text-4xl text-primary border-primary px-24 py-4">
-              {Score.score}
-            </td>
-            <td className="border-y-2 border-r-2 text-4xl text-primary border-primary px-24 py-4">
-              {Score.mode}
-            </td>
-          </tr>
-        ))}
+        {records.data
+          ?.sort(compareFn)
+          ?.map((Score: Record, index: number, array: Record[]) => (
+            <tr
+              key={Score.nickname}
+              className={
+                index === array.length - 1 ? 'border-b-2 border-primary' : ''
+              }
+            >
+              <td className="border-y-2 border-l-2 text-4xl text-primary border-primary px-24 py-4">
+                {index + 1}
+              </td>
+              <td className="border-y-2 text-4xl text-primary border-primary px-24 py-4">
+                {Score.nickname}
+              </td>
+              <td className="border-y-2 text-4xl text-primary border-primary px-24 py-4">
+                {Score.score}
+              </td>
+              <td className="border-y-2 border-r-2 text-4xl text-primary border-primary px-24 py-4">
+                {Score.gameId === 1 ? 'Normal' : 'Bounce'}
+              </td>
+            </tr>
+          ))}
       </table>
       <div className="spacer layer1 flip"></div>
     </>

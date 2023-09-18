@@ -27,5 +27,10 @@ export async function addNewScore(record: newRecord, db = connection) {
 }
 
 export async function getAllScores(db = connection) {
-  return await db('scores').select()
+  return await db('scores').select(
+    'nickname',
+    'score',
+    'auth0_id as auth0Id',
+    'game_id as gameId'
+  )
 }
