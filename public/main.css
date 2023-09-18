@@ -557,6 +557,36 @@ video {
   color: rgb(250 221 225 / var(--tw-text-opacity));
 }
 
+.home-btn {
+  border-radius: 0.25rem;
+  border-width: 4px;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 93 143 / var(--tw-border-opacity));
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 93 143 / var(--tw-text-opacity));
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.home-btn:hover {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 166 193 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(250 221 225 / var(--tw-text-opacity));
+}
+
 .visible {
   visibility: visible;
 }
@@ -567,6 +597,10 @@ video {
 
 .m-12 {
   margin: 3rem;
+}
+
+.m-24 {
+  margin: 6rem;
 }
 
 .m-36 {
@@ -585,16 +619,41 @@ video {
   margin: 2rem;
 }
 
+.m-16 {
+  margin: 4rem;
+}
+
+.m-32 {
+  margin: 8rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.-mt-36 {
+  margin-top: -9rem;
+}
+
 .ml-auto {
   margin-left: auto;
+}
+
+.mb-32 {
+  margin-bottom: 8rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .flex {
   display: flex;
 }
 
-.h-full {
-  height: 100%;
+.table {
+  display: table;
 }
 
 .h-screen {
@@ -654,6 +713,10 @@ video {
   justify-content: center;
 }
 
+.gap-10 {
+  gap: 2.5rem;
+}
+
 .gap-20 {
   gap: 5rem;
 }
@@ -674,6 +737,36 @@ video {
   border-width: 4px;
 }
 
+.border-y-2 {
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.border-y-4 {
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-l-2 {
+  border-left-width: 2px;
+}
+
+.border-l-4 {
+  border-left-width: 4px;
+}
+
+.border-r-2 {
+  border-right-width: 2px;
+}
+
+.border-r-4 {
+  border-right-width: 4px;
+}
+
 .border-primary {
   --tw-border-opacity: 1;
   border-color: rgb(255 93 143 / var(--tw-border-opacity));
@@ -690,6 +783,11 @@ video {
 
 .p-36 {
   padding: 9rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .px-24 {
@@ -712,9 +810,24 @@ video {
   padding-right: 12rem;
 }
 
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .py-24 {
   padding-top: 6rem;
   padding-bottom: 6rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .text-center {

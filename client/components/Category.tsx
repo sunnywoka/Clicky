@@ -31,6 +31,7 @@ function Category() {
           Game 5/ Difficulty
         </Link>
       </div>
+      <div className="spacer layer1 flip"></div>
     </>
   )
 }
