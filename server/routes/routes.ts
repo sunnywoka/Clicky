@@ -5,16 +5,20 @@ import {
   getPlayersScoresByAuth0ID,
   addNewScore,
   getAllScores,
+  addNewPlayer,
 } from '../db/db.ts'
 import { validateAccessToken } from '../auth0.ts'
 
 import { scoreSchema } from '../../types/Score.ts'
+import { playerSchema } from '../../types/Player.ts'
 
 const router = express.Router()
 
 // Route to get player scores by Auth0 ID
 router.get('/players', validateAccessToken, async (req, res) => {
   const auth0Id = req.auth?.payload.sub
+  console.log('hit')
+
   if (!auth0Id) {
     res.status(401).json({ message: 'Please provide an id' })
     return
@@ -26,19 +30,9 @@ router.get('/players', validateAccessToken, async (req, res) => {
     res.status(500).json({ error: 'Unable to retrieve player' })
   }
 })
-// Route to get player scores by game ID
-router.get('/:gameId', async (req, res) => {
-  const { gameId } = req.params
-  try {
-    const scores = await getPlayersScoresByGameID(parseInt(gameId))
-    res.json(scores)
-  } catch (error) {
-    res.status(500).json({ error: 'Player score not found' })
-  }
-})
 
 // Route to add a new score
-router.post('/', validateAccessToken, async (req, res) => {
+router.post('/newscore', validateAccessToken, async (req, res) => {
   const auth0Id = req.auth?.payload.sub
   if (!auth0Id) {
     res.status(401).json({ message: 'Please provide an id' })
@@ -47,7 +41,6 @@ router.post('/', validateAccessToken, async (req, res) => {
   const record = req.body
   const newRecord = {
     auth0Id: auth0Id,
-    nickname: record.nickname,
     score: record.score,
     gameId: record.gameId,
   }
@@ -57,6 +50,38 @@ router.post('/', validateAccessToken, async (req, res) => {
     res.json({ message: 'Score added successfully' })
   } catch (error) {
     res.status(500).json({ error: 'Failed to add new score' })
+  }
+})
+
+router.post('/newplayer', validateAccessToken, async (req, res) => {
+  const auth0Id = req.auth?.payload.sub
+  if (!auth0Id) {
+    res.status(401).json({ message: 'Please provide an id' })
+  }
+
+  const player = req.body
+  const newPlayer = {
+    auth0Id: auth0Id,
+    nickname: player.nickname,
+  }
+
+  const realNewPlayer = playerSchema.parse(newPlayer)
+  try {
+    await addNewPlayer(realNewPlayer)
+    res.json({ message: 'Player added successfully' })
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add new player' })
+  }
+})
+
+// Route to get player scores by game ID
+router.get('/:gameId', async (req, res) => {
+  const { gameId } = req.params
+  try {
+    const scores = await getPlayersScoresByGameID(parseInt(gameId))
+    res.json(scores)
+  } catch (error) {
+    res.status(500).json({ error: 'Player score not found' })
   }
 })
 
