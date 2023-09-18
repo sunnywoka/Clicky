@@ -10,14 +10,14 @@ function Square(props: Props) {
   return (
     <svg style={{ overflow: 'visible', position: 'absolute' }}>
       <rect
-      data-testid="square-rect"
+        data-testid="square-rect"
         role="img"
         x={props.x}
         y={props.y}
         width={props.size}
         height={props.size}
         onClick={props.handleClick}
-        className={props.className}
+        className={`${props.className} dark:fill-white`}
       ></rect>
     </svg>
   )

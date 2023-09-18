@@ -17,13 +17,18 @@ function Triangle(props: Props) {
   const x3 = 0 + x
   const y3 = side + y
   return (
-    <svg style={{ overflow: 'visible', position: 'absolute' }}>
+    <svg
+      style={{
+        overflow: 'visible',
+        position: 'absolute',
+      }}
+    >
       <polygon
-      data-testid="triangle-polygon"
+        data-testid="triangle-polygon"
         role="img"
         points={`${x1} ${y1}, ${x2} ${y2}, ${x3} ${y3}`}
         onClick={props.handleTriangleClick}
-        className={props.className}
+        className={`${props.className} dark:fill-white`}
       />
     </svg>
   )
