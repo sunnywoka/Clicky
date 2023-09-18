@@ -7,6 +7,7 @@ import Explode from './Explode'
 import ScoreRanking from './ScoreRanking'
 import { AnimatePresence } from 'framer-motion'
 import ShrinkyGame from './ShrinkyGame'
+import AddNickname from './AddNickname'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -20,6 +21,7 @@ function AnimatedRoutes() {
         <Route path="/shrinky" element={<ShrinkyGame />} />
         <Route path="/explode" element={<Explode />} />
         <Route path="/ranking" element={<ScoreRanking />} />
+        <Route path="/addnickname" element={<AddNickname />} />
       </Routes>
     </AnimatePresence>
   )

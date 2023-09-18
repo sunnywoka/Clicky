@@ -1,6 +1,7 @@
 import Header from './Header'
 import useRecord from './hooks/useRecords'
 import { Record } from '../../models/Record'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 function ScoreRanking() {
@@ -39,12 +40,7 @@ function ScoreRanking() {
           {records.data
             ?.sort(compareFn)
             ?.map((Score: Record, index: number, array: Record[]) => (
-              <tr
-                key={Score.nickname}
-                className={
-                  index === array.length - 1 ? 'border-b-2 border-primary' : ''
-                }
-              >
+              <tr key={Score.nickname}>
                 <td className="border-y-2 border-l-2 text-4xl text-primary border-primary px-24 py-4">
                   {index + 1}
                 </td>
@@ -60,6 +56,9 @@ function ScoreRanking() {
               </tr>
             ))}
         </table>
+        <Link to="/" className="home-btn mx-auto">
+          Back
+        </Link>
         <div className="spacer layer1 flip"></div>
       </motion.div>
     </>

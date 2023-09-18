@@ -6,7 +6,7 @@ function useGame() {
   const [squareXY, setSquareXY] = useState([0, 0])
   const [circleXY, setCircleXY] = useState([0, 0])
   const [triangleXY, setTriangleXY] = useState([0, 0])
-  const [num, setNum] = useState(60)
+  const [num, setNum] = useState(10)
   const [count, setCount] = useState(0)
   const [shapeScore, setShapeScore] = useState(100)
   const [start, setStart] = useState(false)
