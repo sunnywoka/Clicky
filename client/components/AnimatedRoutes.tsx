@@ -6,6 +6,7 @@ import Game from './Game'
 import Explode from './Explode'
 import ScoreRanking from './ScoreRanking'
 import { AnimatePresence } from 'framer-motion'
+import ShrinkyGame from './ShrinkyGame'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -16,6 +17,7 @@ function AnimatedRoutes() {
         <Route path="/category" element={<Category />} />
         <Route path="/clicky" element={<Game />} />
         <Route path="/bounce" element={<BounceGame />} />
+        <Route path="/shrinky" element={<ShrinkyGame />} />
         <Route path="/explode" element={<Explode />} />
         <Route path="/ranking" element={<ScoreRanking />} />
       </Routes>

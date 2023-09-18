@@ -14,8 +14,8 @@ function Circle(props: Props) {
       <circle
         data-testid="circle-circle"
         role="img"
-        cx={props.x + 5}
-        cy={props.y + 5}
+        cx={props.x + props.radius / 2}
+        cy={props.y + props.radius / 2}
         r={props.radius}
         onClick={props.handleCircleClick}
         className={`${props.className} dark:fill-white`}

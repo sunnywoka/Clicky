@@ -12,9 +12,13 @@ function useGame() {
   const [start, setStart] = useState(false)
   const [isExploding, setIsExploding] = useState(false)
   const [explosionPosition, setExplosionPosition] = useState([0, 0])
-
+  const [shapeSize, setShapeSize] = useState(20)
   const intervalRef = useRef()
+
   const decreaseScore = () => setShapeScore((prev) => prev - 1)
+
+  const decreaseSize = () =>
+    setShapeSize((prev) => (prev > 5 ? prev - 0.05 : prev))
 
   const coordEffect = useEffect(() => {
     const xy = coord.getRandom(screenSize)
@@ -37,6 +41,7 @@ function useGame() {
     if (start) {
       intervalRef.current = setInterval(decreaseNum, 1000)
       intervalRef.current = setInterval(decreaseScore, 100)
+      intervalRef.current = setInterval(decreaseSize, 1)
     } else {
       clearInterval(intervalRef.current)
     }
@@ -62,6 +67,7 @@ function useGame() {
   ) {
     setExplosionPosition([e.pageX, e.pageY])
     setIsExploding(true)
+    setShapeSize(20)
     setTimeout(() => {
       setIsExploding(false)
     }, 250)
@@ -123,6 +129,7 @@ function useGame() {
       state: explosionPosition,
       function: setExplosionPosition,
     },
+    shapeSize: { state: shapeSize, function: setShapeSize },
   }
 
   const effects = {
