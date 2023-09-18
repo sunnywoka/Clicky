@@ -3,7 +3,6 @@ import {
   getCurrentDimension,
   getRandomHeight,
   isTooClose,
-  getNewXY,
 } from './coordinatefunctions'
 import { test, expect } from 'vitest'
 
