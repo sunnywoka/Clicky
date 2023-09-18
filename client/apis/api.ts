@@ -34,3 +34,10 @@ export async function addNewPlayer(token: string, nickname: string) {
     .set('Authorization', `Bearer ${token}`)
     .send({ nickname: nickname })
 }
+
+export async function getPlayer(token: string) {
+  const res = await request
+    .get(`${rootUrl}/players`)
+    .set('Authorization', `Bearer ${token}`)
+  return res.body
+}
