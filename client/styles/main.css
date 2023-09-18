@@ -10,7 +10,7 @@
     @apply whitespace-nowrap overflow-hidden text-ellipsis;
     @apply hover:bg-pink2 hover:text-pink3 hover:animate-pulse;
   }
-  .log-btn {
+  .home-btn {
     @apply border-4 border-primary rounded;
     @apply text-4xl font-bold text-primary;
     @apply px-12 py-6;

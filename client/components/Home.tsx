@@ -16,8 +16,10 @@ function Home() {
             Choose Game Mode
           </Link>
         </div>
-        <LoginButton />
-        <ScoreButton />
+        <div className="flex justify-center items-center gap-10">
+          <LoginButton />
+          <ScoreButton />
+        </div>
         <div className="spacer layer1 flip"></div>
       </section>
     </>

@@ -33,7 +33,7 @@ function BounceGame() {
           </div>
         ) : (
           <>
-            <div className="flex justify-center p-2 m-4 items-center text-3xl">
+            <div className="flex justify-center p-2 mb-32 mt-4 items-center text-3xl">
               <Link
                 className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 animate-bounce"
                 to="/category"
@@ -49,7 +49,7 @@ function BounceGame() {
             </div>
             {states.num.state !== 0 ? (
               <>
-                <div className="flex justify-center items-center p-2">
+                <div className="flex justify-center items-center p-2 m-4">
                   <svg
                     viewBox={`0 0 300 ${states.screenSize.state.height}`}
                     className="border-4 border-primary m-8 animate-bounce cursor-crosshair"
