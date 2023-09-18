@@ -20,6 +20,7 @@ router.post('/newplayer', validateAccessToken, async (req, res) => {
   const realNewPlayer = playerSchema.parse(newPlayer)
   try {
     await addNewPlayer(realNewPlayer)
+    res.status(201)
     res.json({ message: 'Player added successfully' })
   } catch (error) {
     res.status(500).json({ error: 'Failed to add new player' })
