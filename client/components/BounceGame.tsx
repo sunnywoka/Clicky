@@ -19,7 +19,7 @@ function BounceGame() {
         exit={{ opacity: 0 }}
       >
         <h1 className="text-6xl m-4 text-primary font-bold text-center animate-bounce">
-          Bounce!
+          Bouncy!
         </h1>
         <div>
           <audio ref={audio.audioRef}>

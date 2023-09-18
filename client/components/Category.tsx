@@ -19,7 +19,7 @@ function Category() {
             Clicky
           </Link>
           <Link className="cat-btn" to="/bounce">
-            Bounce
+            Bouncy
           </Link>
         </div>
 
