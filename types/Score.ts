@@ -2,7 +2,6 @@ import * as z from 'zod'
 
 export const scoreSchema = z.object({
   auth0Id: z.string(),
-  nickname: z.string(),
   score: z.number(),
   gameId: z.number(),
 })

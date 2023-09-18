@@ -17,7 +17,7 @@ function Square(props: Props) {
         width={props.size}
         height={props.size}
         onClick={props.handleClick}
-        className={props.className}
+        className={`${props.className} dark:fill-white`}
       ></rect>
     </svg>
   )

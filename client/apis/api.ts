@@ -1,57 +1,36 @@
-// import request from 'superagent'
-// import { newRecord } from '../models/Record'
+import request from 'superagent'
 
-// const rootUrl = '/api/v1'
+const rootUrl = '/api/v1'
 
 export async function getRecords() {
-  return Promise.resolve([
-    {
-      nickname: 'Mr.Hum',
-      score: 500,
-      mode: 'Normal',
-    },
-    {
-      nickname: 'Mr.Hum',
-      score: 300,
-      mode: 'Bounce',
-    },
-    {
-      nickname: 'Mr.Hum',
-      score: 2000,
-      mode: 'Normal',
-    },
-    {
-      nickname: 'CCCoBBB',
-      score: 353,
-      mode: 'Normal',
-    },
-    {
-      nickname: 'CCCoBBB',
-      score: 300,
-      mode: 'Bounce',
-    },
-    {
-      nickname: 'TYL',
-      score: 2000,
-      mode: 'Bounce',
-    },
-    {
-      nickname: 'TYL',
-      score: 35356,
-      mode: 'Normal',
-    },
-  ])
+  const res = await request.get(`${rootUrl}/scores`)
+  return res.body
 }
 
-//.catch(logError)
+export async function getRecordsByGameId() {
+  const res = await request.get(`${rootUrl}/scores/gameId`)
+  return res.body
+}
 
-// function logError(err: Error) {
-//   if (err.message === 'Username Taken') {
-//     throw new Error('Username already taken - please choose another')
-//   } else if (err.message === 'Forbidden') {
-//     throw new Error('Only the registered player can add the records.')
-//   } else {
-//     console.error('Error consuming the API (in client/api.js):', err.message)
-//     throw err
-//   }
-// }
+export async function getRecordsBynickname() {
+  const res = await request.get(`${rootUrl}/scores/nickname`)
+  return res.body
+}
+
+export async function addNewRecord(
+  token: string,
+  score: number,
+  gameId: number
+) {
+  await request
+    .post(`${rootUrl}/scores/newscore`)
+    .set('Authorization', `Bearer ${token}`)
+    .send({ score: score, gameId: gameId })
+}
+
+export async function addNewPlayer(token: string, nickname: string) {
+  await request
+    .post(`${rootUrl}/players/newplayer`)
+    .set('Authorization', `Bearer ${token}`)
+    .send({ nickname: nickname })
+}

@@ -1,3 +1,4 @@
-export function seed(knex) {
-  return knex('scores').del()
+export async function seed(knex) {
+  await knex('scores').del()
+  await knex('players').del()
 }

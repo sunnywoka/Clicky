@@ -7,3 +7,6 @@ bundle.*
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+#tailwind
+public/main.css

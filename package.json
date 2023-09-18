@@ -44,6 +44,7 @@
     "nock": "^13.3.3",
     "react-explode": "^2.0.5",
     "sinon": "^16.0.0",
+    "react-toggle-dark-mode": "^1.1.1",
     "sqlite3": "^5.1.6",
     "update-dotenv": "^1.1.1",
     "use-sound": "^4.0.1",
