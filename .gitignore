@@ -4,6 +4,9 @@ bundle.*
 *.sqlite3
 .env
 /dist
+/test-results/
+/playwright-report/
+/playwright/.cache/
 
 #tailwind
 public/main.css
