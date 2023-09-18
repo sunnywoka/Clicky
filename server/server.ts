@@ -10,7 +10,7 @@ const server = express()
 server.use(express.json())
 
 server.use('/api/v1/scores', scoreRoutes)
-server.use('api/v1/players', playerRoutes)
+server.use('/api/v1/players', playerRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
