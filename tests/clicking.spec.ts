@@ -18,9 +18,7 @@ test.beforeEach(async ({ context }) => {
   })
 })
 
-test.only('clicky game displays correct score on initial click', async ({
-  page,
-}) => {
+test('clicky game displays correct score on missed click', async ({ page }) => {
   await page.goto('http://localhost:5173/clicky')
 
   await page.getByRole('button', { name: 'Start' }).click()
@@ -31,5 +29,19 @@ test.only('clicky game displays correct score on initial click', async ({
   await page.getByTestId('game-box').click()
   await expect(
     page.getByRole('heading', { level: 2, name: 'Score: -100' })
+  ).toBeVisible()
+})
+
+test.only('clicky game does not deduct score on missed click outside gamebox', async ({
+  page,
+}) => {
+  await page.goto('http://localhost:5173/clicky')
+
+  await page.getByRole('button', { name: 'Start' }).click()
+  await page.getByRole('heading', { level: 1, name: 'Clicky!' }).click()
+  await page.getByRole('heading', { level: 2, name: 'Score:' }).click()
+  await page.getByRole('heading', { level: 2, name: 'Time:' }).click()
+  await expect(
+    page.getByRole('heading', { level: 2, name: 'Score: 0' })
   ).toBeVisible()
 })
