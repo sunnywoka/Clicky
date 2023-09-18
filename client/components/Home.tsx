@@ -17,8 +17,8 @@ function Home() {
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
       const response = await getPlayer(accessToken)
-      if (response?.nickname) navigate('/')
       if (!response?.nickname) navigate('/addnickname')
+      if (response?.nickname) navigate('/')
       return []
     },
   })

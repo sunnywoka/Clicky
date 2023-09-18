@@ -13,7 +13,7 @@ function AddNickname() {
     e.preventDefault()
     const token = await getAccessTokenSilently()
     useNickname.nicknameMutation.mutate({ nickname: input, token })
-    navigate('/Home')
+    navigate('/')
   }
 
   return (
@@ -21,7 +21,7 @@ function AddNickname() {
       <div>
         <label htmlFor="nickname">Nickname: </label>
         <input
-          placeholder="eg.Oops"
+          placeholder="Add your unique nickname!"
           autoFocus={true}
           value={input}
           onChange={(e) => setInput(e.target.value)}
