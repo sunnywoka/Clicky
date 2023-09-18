@@ -6,5 +6,4 @@ bundle.*
 /dist
 
 #tailwind
-main.css
 public/main.css
