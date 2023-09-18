@@ -1,5 +1,4 @@
 export interface Record {
-  nickname: string
   score: number
   gameId: number
 }
