@@ -12,13 +12,13 @@ export async function getPlayersScoresByGameID(
     .select('players.nickname', 'score')
 }
 
-export async function getPlayersScoresByAuth0ID(
-  auth0Id: string,
+export async function getPlayersScoresBynickname(
+  nickname: string,
   db = connection
 ) {
   return await db('scores')
     .join('players', 'scores.player_id', 'players.auth0_id')
-    .where('player_id', auth0Id)
+    .where('players.nickname', nickname)
     .select('players.nickname', 'score')
 }
 

@@ -1,26 +1,20 @@
 import express from 'express'
 import {
   getPlayersScoresByGameID,
-  getPlayersScoresByAuth0ID,
   addNewScore,
   getAllScores,
+  getPlayersScoresBynickname,
 } from '../db/db.ts'
 import { validateAccessToken } from '../auth0.ts'
 import { scoreSchema } from '../../types/Score.ts'
 
 const router = express.Router()
 
-// Route to get player scores by Auth0 ID
-router.get('/players', validateAccessToken, async (req, res) => {
-  const auth0Id = req.auth?.payload.sub
-  console.log('hit')
-
-  if (!auth0Id) {
-    res.status(401).json({ message: 'Please provide an id' })
-    return
-  }
+// Route to get player scores by nickname
+router.get('/:nickname', async (req, res) => {
+  const { nickname } = req.params
   try {
-    const scores = await getPlayersScoresByAuth0ID(auth0Id)
+    const scores = await getPlayersScoresBynickname(nickname)
     res.json(scores)
   } catch (error) {
     res.status(500).json({ error: 'Unable to retrieve player' })
