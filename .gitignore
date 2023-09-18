@@ -4,3 +4,6 @@ bundle.*
 *.sqlite3
 .env
 /dist
+
+#tailwind
+public/main.css

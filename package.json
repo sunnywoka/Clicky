@@ -42,6 +42,7 @@
     "kute": "^1.0.0",
     "kute.js": "^2.2.4",
     "react-explode": "^2.0.5",
+    "react-toggle-dark-mode": "^1.1.1",
     "sqlite3": "^5.1.6",
     "update-dotenv": "^1.1.1",
     "use-sound": "^4.0.1",
