@@ -29,6 +29,7 @@
     ]
   },
   "dependencies": {
+    "@sinonjs/fake-timers": "^11.1.0",
     "@tanstack/react-query": "^4.35.3",
     "@vee-validate/zod": "^4.11.6",
     "dotenv": "^16.3.1",
@@ -40,9 +41,9 @@
     "knex": "^2.5.1",
     "kute": "^1.0.0",
     "kute.js": "^2.2.4",
-
     "nock": "^13.3.3",
     "react-explode": "^2.0.5",
+    "sinon": "^16.0.0",
     "sqlite3": "^5.1.6",
     "update-dotenv": "^1.1.1",
     "use-sound": "^4.0.1",
@@ -60,6 +61,8 @@
     "@types/node": "^18.15.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/sinon": "^10.0.16",
+    "@types/sinonjs__fake-timers": "^8.1.2",
     "@types/styled-components": "^5.1.26",
     "@types/supertest": "^2.0.12",
     "@vitejs/plugin-react": "^4.0.4",
