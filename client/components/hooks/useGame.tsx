@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import * as coord from '../coordinatefunctions'
+import * as coord from '../functions/coordinatefunctions'
 
 function useGame() {
   const [screenSize, setScreenSize] = useState(coord.getCurrentDimension)
