@@ -1,4 +1,4 @@
-import { getRecords } from '../../api'
+import { getRecords } from '../../apis/api'
 import { useQuery } from '@tanstack/react-query'
 
 function useRecords() {
