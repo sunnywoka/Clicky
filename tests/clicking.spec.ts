@@ -32,7 +32,7 @@ test('clicky game displays correct score on missed click', async ({ page }) => {
   ).toBeVisible()
 })
 
-test.only('clicky game does not deduct score on missed click outside gamebox', async ({
+test('clicky game does not deduct score on missed click outside gamebox', async ({
   page,
 }) => {
   await page.goto('http://localhost:5173/clicky')
