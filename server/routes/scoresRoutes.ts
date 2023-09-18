@@ -11,7 +11,7 @@ import { scoreSchema } from '../../types/Score.ts'
 const router = express.Router()
 
 // Route to get player scores by nickname
-router.get('/:nickname', async (req, res) => {
+router.get('/nickname/:nickname', async (req, res) => {
   const { nickname } = req.params
   try {
     const scores = await getPlayersScoresBynickname(nickname)
@@ -37,8 +37,7 @@ router.post('/newscore', validateAccessToken, async (req, res) => {
   const realNewScore = scoreSchema.parse(newRecord)
   try {
     await addNewScore(realNewScore)
-    res.status(201)
-    res.json({ message: 'Score added successfully' })
+    res.status(201).json({ message: 'Score added successfully' })
   } catch (error) {
     res.status(500).json({ error: 'Failed to add new score' })
   }
