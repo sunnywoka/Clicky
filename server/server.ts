@@ -2,13 +2,13 @@ import * as Path from 'node:path'
 
 import express from 'express'
 
-import fruitRoutes from './routes/fruits.ts'
+import scoreRoutes from './routes/routes'
 
 const server = express()
 
 server.use(express.json())
 
-server.use('/api/v1/fruits', fruitRoutes)
+server.use('/api/v1/scores', scoreRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
