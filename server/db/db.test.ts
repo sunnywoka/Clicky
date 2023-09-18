@@ -30,7 +30,6 @@ test('2. List all score by auth0 ID', async () => {
 test('3. Add a new record to database and the database should have one extra record', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
-    nickname: 'Mr.Hum',
     score: 966,
     gameId: 1,
   }
@@ -45,7 +44,6 @@ test('3. Add a new record to database and the database should have one extra rec
 test('4. Add a new record to database and the database can get two scores for game ID 2', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
-    nickname: 'Mr.Hum',
     score: 966,
     gameId: 2,
   }
@@ -58,6 +56,10 @@ test('4. Add a new record to database and the database can get two scores for ga
       score: 600,
     },
     {
+      nickname: 'CCCoBBB',
+      score: 4746,
+    },
+    {
       nickname: 'Mr.Hum',
       score: 966,
     },
@@ -67,7 +69,6 @@ test('4. Add a new record to database and the database can get two scores for ga
 test('5. Add a new record to database and the database can get three scores for same Auth0 ID', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
-    nickname: 'Mr.Hum',
     score: 966,
     gameId: 2,
   }
@@ -89,5 +90,19 @@ test('5. Add a new record to database and the database can get three scores for 
       nickname: 'Mr.Hum',
       score: 966,
     },
+  ])
+})
+
+test('6, Add a new player to database and after database has three registered players', async () => {
+  const testRecord = {
+    auth0Id: 'auth0|6478f3fd75374ee3d7bc4d74',
+    nickname: 'TYL',
+  }
+  await dbFunction.addNewPlayer(testRecord)
+  const allPlayers = await dbFunction.getAllPlayers()
+  expect(allPlayers).toStrictEqual([
+    { nickname: 'Mr.Hum' },
+    { nickname: 'CCCoBBB' },
+    { nickname: 'TYL' },
   ])
 })

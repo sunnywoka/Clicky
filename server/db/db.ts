@@ -46,3 +46,7 @@ export async function addNewPlayer(newPlayer: newPlayer, db = connection) {
     nickname: newPlayer.nickname,
   })
 }
+
+export async function getAllPlayers(db = connection) {
+  return await db('players').select('nickname')
+}
