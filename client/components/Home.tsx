@@ -2,11 +2,16 @@ import { Link } from 'react-router-dom'
 import Header from './Header'
 import LoginButton from './LoginButton'
 import ScoreButton from './ScoreButton'
+import { motion } from 'framer-motion'
 
 function Home() {
   return (
     <>
-      <section>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Header />
         <div className="flex justify-center items-center m-24">
           <Link
@@ -21,7 +26,7 @@ function Home() {
           <ScoreButton />
         </div>
         <div className="spacer layer1 flip"></div>
-      </section>
+      </motion.div>
     </>
   )
 }
