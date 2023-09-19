@@ -6,11 +6,13 @@ import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 import useGame from './hooks/useGame'
-import AddScoreButton from './AddScoreButton'
 import { motion } from 'framer-motion'
-import GameHeader from './GameHeader'
+import AddScoreButton from './AddScoreButton'
+import MoveySquare from './shapes/moveyshapes/MoveySquare'
+import MoveyCircle from './shapes/moveyshapes/MoveyCircle'
+import MoveyTriangle from './shapes/moveyshapes/MoveyTriangle'
 
-function BounceGame() {
+function MoveyGame() {
   const { states, effects, clicks, audio } = useGame()
   return (
     <>
@@ -19,9 +21,9 @@ function BounceGame() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <div className="animate-bounce mt-10">
-          <GameHeader title={'Bouncy!'} />
-        </div>
+        <h1 className="text-6xl m-4 text-primary font-bold text-center">
+          Clicky!
+        </h1>
         <div>
           <audio ref={audio.audioRef}>
             <source src="../../src/click.wav" type="audio/mpeg" />
@@ -31,7 +33,7 @@ function BounceGame() {
         {!states.start.state ? (
           <div className="flex justify-center items-center h-screen">
             <button
-              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 animate-bounce"
+              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
               onClick={clicks.handleStartClick}
             >
               Start
@@ -39,48 +41,52 @@ function BounceGame() {
           </div>
         ) : (
           <>
-            <div className="flex justify-center p-2 mb-32 mt-4 items-center text-3xl">
+            <div className="flex justify-center p-2 m-4 items-center text-3xl">
               <Link
-                className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 animate-bounce"
+                className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
                 to="/category"
               >
                 Go Back
               </Link>
-              <h2 className="text-center flex-grow animate-bounce">
+              <h2 className="text-center flex-grow">
                 Time: {states.num.state}
               </h2>
-              <h2 className="ml-auto animate-bounce">
+              <h2 className="ml-auto" data-testid="score">
                 Score: {states.count.state}
               </h2>
             </div>
             {states.num.state !== 0 ? (
               <>
-                <div className="flex justify-center items-center p-2 m-4">
+                <div className="flex justify-center items-center p-2">
                   <svg
                     viewBox={`0 0 300 ${states.screenSize.state.height}`}
-                    className="border-4 border-primary m-8 animate-bounce cursor-crosshair"
+                    className="border-4 border-primary m-8 cursor-crosshair"
                     onClick={clicks.handleMissClick}
+                    data-testid="game-box"
                   >
-                    <Square
+                    <MoveySquare
                       x={states.squareXY.state[0]}
                       y={states.squareXY.state[1]}
                       size={20}
                       handleClick={clicks.handleSquareClick}
-                      className={'animate-bounce'}
+                      className={''}
+                      move={states.move.state}
                     />
-                    <Circle
+                    <MoveyCircle
                       x={states.circleXY.state[0]}
                       y={states.circleXY.state[1]}
                       radius={10}
                       handleCircleClick={clicks.handleCircleClick}
-                      className={'animate-bounce'}
+                      className={''}
+                      move={states.move.state}
                     />
-                    <Triangle
+                    <MoveyTriangle
                       x={states.triangleXY.state[0]}
                       y={states.triangleXY.state[1]}
                       sideLength={20}
                       handleTriangleClick={clicks.handleTriangleClick}
-                      className={'animate-bounce'}
+                      className={''}
+                      move={states.move.state}
                     />
                   </svg>
                   {states.isExploding.state && (
@@ -92,15 +98,15 @@ function BounceGame() {
                 </div>
               </>
             ) : (
-              <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl animate-bounce">
+              <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl">
                 <GameOver score={states.count.state} />
                 <button
-                  className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 animate-bounce"
+                  className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
                   onClick={() => window.location.reload()}
                 >
                   Restart
                 </button>
-                <AddScoreButton score={states.count.state} gameId={2} />
+                <AddScoreButton score={states.count.state} gameId={1} />
               </div>
             )}
           </>
@@ -110,4 +116,4 @@ function BounceGame() {
   )
 }
 
-export default BounceGame
+export default MoveyGame

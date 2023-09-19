@@ -6,13 +6,14 @@ function useGame() {
   const [squareXY, setSquareXY] = useState([0, 0])
   const [circleXY, setCircleXY] = useState([0, 0])
   const [triangleXY, setTriangleXY] = useState([0, 0])
-  const [num, setNum] = useState(10)
+  const [num, setNum] = useState(60)
   const [count, setCount] = useState(0)
   const [shapeScore, setShapeScore] = useState(100)
   const [start, setStart] = useState(false)
   const [isExploding, setIsExploding] = useState(false)
   const [explosionPosition, setExplosionPosition] = useState([0, 0])
   const [shapeSize, setShapeSize] = useState(20)
+  const [move, setMove] = useState(false)
   const intervalRef = useRef()
 
   const decreaseScore = () => setShapeScore((prev) => prev - 1)
@@ -68,6 +69,7 @@ function useGame() {
     setExplosionPosition([e.pageX, e.pageY])
     setIsExploding(true)
     setShapeSize(20)
+    setMove(!move)
     setTimeout(() => {
       setIsExploding(false)
     }, 250)
@@ -130,6 +132,7 @@ function useGame() {
       function: setExplosionPosition,
     },
     shapeSize: { state: shapeSize, function: setShapeSize },
+    move: { state: move, function: setMove },
   }
 
   const effects = {

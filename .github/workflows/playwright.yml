@@ -1,9 +1,16 @@
 name: Playwright Tests
+
+env:
+  # For Auth0 - this will be used for testing
+  VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
+  VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
+  VITE_AUTH0_AUDIENCE: ${{ secrets.VITE_AUTH0_AUDIENCE }}
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  
 jobs:
   test:
     timeout-minutes: 60

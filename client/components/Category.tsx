@@ -11,7 +11,7 @@ function Category() {
         exit={{ opacity: 0 }}
       >
         <Header />
-        <h2 className="text-5xl m-12 text-primary font-bold text-center">
+        <h2 className="text-5xl my-12 text-primary font-bold text-center">
           Game Modes
         </h2>
         <div className="flex justify-center items-center gap-96 m-6">
@@ -33,8 +33,8 @@ function Category() {
           <Link className="cat-btn" to="/4">
             Game 4/ Difficulty
           </Link>
-          <Link className="cat-btn" to="/5">
-            Game 5/ Difficulty
+          <Link className="cat-btn" to="/movey">
+            Movey
           </Link>
         </div>
         <div className="spacer layer1 flip"></div>

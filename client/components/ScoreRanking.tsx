@@ -40,7 +40,14 @@ function ScoreRanking() {
         exit={{ opacity: 0 }}
       >
         <Header />
-        <h2 className="text-5xl m-12 text-primary font-bold text-center">
+        <Link
+          to="/"
+          className="text-primary text-2xl px-8 py-4 ml-6 border-2 border-primary rounded hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+        >
+          Back
+        </Link>
+
+        <h2 className="text-5xl mb-8 text-primary font-bold text-center flex-grow">
           Score Ranking
         </h2>
         <table className="mx-auto">
@@ -115,9 +122,6 @@ function ScoreRanking() {
                 ))}
           </tbody>
         </table>
-        <Link to="/" className="home-btn mx-auto">
-          Back
-        </Link>
         <div className="spacer layer1 flip"></div>
       </motion.div>
     </>
