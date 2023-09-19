@@ -16,7 +16,6 @@ function ScoreRanking() {
   const nicknames = [
     ...new Set(records.data?.map((score: Record) => score.nickname || '')),
   ] as string[]
-
   const handleNicknameChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
