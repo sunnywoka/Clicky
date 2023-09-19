@@ -1,6 +1,7 @@
 import Header from './Header'
 import useRecord from './hooks/useRecords'
 import { Record } from '../../models/Record'
+import { Link } from 'react-router-dom'
 
 function ScoreRanking() {
   function compareFn(a: Record, b: Record) {
@@ -54,6 +55,9 @@ function ScoreRanking() {
             </tr>
           ))}
       </table>
+      <Link to="/" className="home-btn mx-auto">
+        Back
+      </Link>
       <div className="spacer layer1 flip"></div>
     </>
   )
