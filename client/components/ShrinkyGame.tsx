@@ -7,6 +7,7 @@ import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 import useGame from './hooks/useGame'
 import { motion } from 'framer-motion'
+import AddScoreButton from './AddScoreButton'
 
 function ShrinkyGame() {
   const { states, effects, clicks, audio } = useGame()
@@ -100,6 +101,7 @@ function ShrinkyGame() {
                 >
                   Restart
                 </button>
+                <AddScoreButton score={states.count.state} gameId={3} />
               </div>
             )}
           </>
