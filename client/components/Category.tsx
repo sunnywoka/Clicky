@@ -19,13 +19,13 @@ function Category() {
             Clicky
           </Link>
           <Link className="cat-btn" to="/bounce">
-            Bounce
+            Bouncy
           </Link>
         </div>
 
         <div className="flex justify-center m-6">
-          <Link className="cat-btn" to="/3">
-            Game 3/ Difficulty
+          <Link className="cat-btn" to="/shrinky">
+            Shrinky
           </Link>
         </div>
 
