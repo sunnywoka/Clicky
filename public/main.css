@@ -595,10 +595,6 @@ video {
   position: absolute;
 }
 
-.m-12 {
-  margin: 3rem;
-}
-
 .m-24 {
   margin: 6rem;
 }
@@ -624,6 +620,11 @@ video {
   margin-right: auto;
 }
 
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 .-mt-36 {
   margin-top: -9rem;
 }
@@ -634,6 +635,14 @@ video {
 
 .mb-32 {
   margin-bottom: 8rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.ml-6 {
+  margin-left: 1.5rem;
 }
 
 .ml-auto {
@@ -650,6 +659,18 @@ video {
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .flex {
@@ -739,6 +760,10 @@ video {
 
 .gap-96 {
   gap: 24rem;
+}
+
+.gap-8 {
+  gap: 2rem;
 }
 
 .rounded {
@@ -853,6 +878,11 @@ video {
 
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-3xl {

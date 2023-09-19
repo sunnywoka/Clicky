@@ -8,6 +8,7 @@ import Explode from './Explode'
 import useGame from './hooks/useGame'
 import { motion } from 'framer-motion'
 import AddScoreButton from './AddScoreButton'
+import GameHeader from './GameHeader'
 
 function Game() {
   const { states, effects, clicks, audio } = useGame()
@@ -18,9 +19,7 @@ function Game() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <h1 className="text-6xl m-4 text-primary font-bold text-center">
-          Clicky!
-        </h1>
+        <GameHeader title={'Clicky!'} />
         <div>
           <audio ref={audio.audioRef}>
             <source src="../../src/click.wav" type="audio/mpeg" />
