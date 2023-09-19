@@ -14,7 +14,7 @@ test('game modes are visible', async ({ page }) => {
     page.getByRole('heading', { level: 2, name: 'Game Modes' })
   ).toBeVisible()
   await expect(page.getByRole('link', { name: 'Clicky' })).toBeVisible()
-  await expect(page.getByRole('link', { name: 'Bounce' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Bouncy' })).toBeVisible()
 })
 
 test('clicky game displays all starting elements', async ({ page }) => {

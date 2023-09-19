@@ -19,7 +19,7 @@ function Header() {
           alt="gun"
         />
       </div>
-      <hr className="border-4 border-primary" />
+      <hr className="border-4 border-primary mb-8" />
     </>
   )
 }
