@@ -70,6 +70,7 @@ function MoveyGame() {
                       size={20}
                       handleClick={clicks.handleSquareClick}
                       className={''}
+                      move={states.move.state}
                     />
                     <MoveyCircle
                       x={states.circleXY.state[0]}
@@ -77,6 +78,7 @@ function MoveyGame() {
                       radius={10}
                       handleCircleClick={clicks.handleCircleClick}
                       className={''}
+                      move={states.move.state}
                     />
                     <MoveyTriangle
                       x={states.triangleXY.state[0]}
@@ -84,6 +86,7 @@ function MoveyGame() {
                       sideLength={20}
                       handleTriangleClick={clicks.handleTriangleClick}
                       className={''}
+                      move={states.move.state}
                     />
                   </svg>
                   {states.isExploding.state && (
