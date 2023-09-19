@@ -51,7 +51,11 @@ function ScoreRanking() {
                   {Score.score}
                 </td>
                 <td className="border-y-2 border-r-2 text-4xl text-primary border-primary px-24 py-4">
-                  {Score.gameId === 1 ? 'Normal' : 'Bounce'}
+                  {Score.gameId === 1
+                    ? 'Clicky'
+                    : Score.gameId === 2
+                    ? 'Bouncy'
+                    : 'Shrinky'}
                 </td>
               </tr>
             ))}
