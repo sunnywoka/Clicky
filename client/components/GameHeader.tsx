@@ -13,7 +13,7 @@ function GameHeader(props: Props) {
       </div>
       <Link
         to="/category"
-        className="text-6xl text-primary font-bold flex justify-center"
+        className="text-6xl text-primary font-bold text-center"
       >
         {props.title}
       </Link>
