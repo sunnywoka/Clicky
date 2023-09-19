@@ -8,6 +8,7 @@ import Explode from './Explode'
 import useGame from './hooks/useGame'
 import { motion } from 'framer-motion'
 import AddScoreButton from './AddScoreButton'
+import GameHeader from './GameHeader'
 import MoveySquare from './shapes/moveyshapes/MoveySquare'
 import MoveyCircle from './shapes/moveyshapes/MoveyCircle'
 import MoveyTriangle from './shapes/moveyshapes/MoveyTriangle'
@@ -21,9 +22,7 @@ function MoveyGame() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <h1 className="text-6xl m-4 text-primary font-bold text-center">
-          Clicky!
-        </h1>
+        <GameHeader title={'Movey!'} />
         <div>
           <audio ref={audio.audioRef}>
             <source src="../../src/click.wav" type="audio/mpeg" />
