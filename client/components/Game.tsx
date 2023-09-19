@@ -6,28 +6,10 @@ import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 import useGame from './hooks/useGame'
-import { useAuth0 } from '@auth0/auth0-react'
-import { useNavigate } from 'react-router-dom'
-import scoresHook from './hooks/useScores'
-import { useState } from 'react'
+import AddScoreButton from './AddScoreButton'
 
 function Game() {
   const { states, effects, clicks, audio } = useGame()
-
-  const navigate = useNavigate()
-  const { getAccessTokenSilently } = useAuth0()
-  const useScores = scoresHook()
-
-  async function handleClick(
-    e: React.FormEvent<HTMLButtonElement>,
-    score: number
-  ) {
-    e.preventDefault()
-    const token = await getAccessTokenSilently()
-    useScores.scoreMutation.mutate({ token, score, gameId: 1 })
-    navigate('/ranking')
-  }
-
   return (
     <>
       <div>
@@ -113,12 +95,7 @@ function Game() {
                 >
                   Restart
                 </button>
-                <button
-                  className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
-                  onClick={(e) => handleClick(e, states.count.state)}
-                >
-                  Add to ranking table
-                </button>
+                <AddScoreButton score={states.count.state} gameId={1} />
               </div>
             )}
           </>

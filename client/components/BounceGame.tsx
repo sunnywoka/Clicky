@@ -7,6 +7,7 @@ import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 
 import useGame from './hooks/useGame'
+import AddScoreButton from './AddScoreButton'
 
 function BounceGame() {
   const { states, effects, clicks, audio } = useGame()
@@ -94,6 +95,7 @@ function BounceGame() {
                 >
                   Restart
                 </button>
+                <AddScoreButton score={states.count.state} gameId={2} />
               </div>
             )}
           </>
