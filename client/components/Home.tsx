@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Header from './Header'
 import LoginButton from './LoginButton'
 import ScoreButton from './ScoreButton'
+import { motion } from 'framer-motion'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 import { getPlayer } from '../apis/api'
@@ -28,17 +29,19 @@ function Home() {
 
   return (
     <>
-      <section>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Header />
-        {playerName.data ? (
-          <p className="flex justify-center text-4xl font-bold text-primary">
-            Welcome back {playerName.data}!
-          </p>
-        ) : (
-          <p className="flex justify-center text-4xl font-bold text-primary">
-            Log in to save your scores!
-          </p>
-        )}
+        <div className="flex justify-center text-4xl font-bold text-primary mt-12">
+          {playerName.data ? (
+            <p>Welcome back {playerName.data}!</p>
+          ) : (
+            <p>Log in to save your scores!</p>
+          )}
+        </div>
         <div className="flex justify-center items-center m-24">
           <Link
             to="/category"
@@ -47,12 +50,12 @@ function Home() {
             Choose Game Mode
           </Link>
         </div>
-        <div className="flex justify-center items-center gap-10 -mb-12">
+        <div className="flex justify-center items-center gap-10">
           <LoginButton />
           <ScoreButton />
         </div>
         <div className="spacer layer1 flip"></div>
-      </section>
+      </motion.div>
     </>
   )
 }

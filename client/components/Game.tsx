@@ -6,13 +6,18 @@ import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 import useGame from './hooks/useGame'
+import { motion } from 'framer-motion'
 import AddScoreButton from './AddScoreButton'
 
 function Game() {
   const { states, effects, clicks, audio } = useGame()
   return (
     <>
-      <div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <h1 className="text-6xl m-4 text-primary font-bold text-center">
           Clicky!
         </h1>
@@ -100,7 +105,7 @@ function Game() {
             )}
           </>
         )}
-      </div>
+      </motion.div>
     </>
   )
 }

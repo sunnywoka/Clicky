@@ -5,15 +5,19 @@ import Circle from './shapes/Circle'
 import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
-
 import useGame from './hooks/useGame'
 import AddScoreButton from './AddScoreButton'
+import { motion } from 'framer-motion'
 
 function BounceGame() {
   const { states, effects, clicks, audio } = useGame()
   return (
     <>
-      <div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <h1 className="text-6xl m-4 text-primary font-bold text-center animate-bounce">
           Bounce!
         </h1>
@@ -100,7 +104,7 @@ function BounceGame() {
             )}
           </>
         )}
-      </div>
+      </motion.div>
     </>
   )
 }
