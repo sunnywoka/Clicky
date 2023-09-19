@@ -50,3 +50,7 @@ export async function addNewPlayer(newPlayer: newPlayer, db = connection) {
 export async function getAllPlayers(db = connection) {
   return await db('players').select('nickname')
 }
+
+export async function getPlayer(auth0Id: string, db = connection) {
+  return await db('players').where('auth0_id', auth0Id).select().first()
+}

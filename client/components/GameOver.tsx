@@ -5,7 +5,7 @@ interface Props {
 function GameOver(props: Props) {
   return (
     <div>
-      <div>
+      <div data-testid="game-over">
         Game Over
         <br />
         Your score is {props.score}
