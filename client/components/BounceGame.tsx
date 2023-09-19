@@ -19,7 +19,7 @@ function BounceGame() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <div className="animate-bounce mt-12 flex justify-center">
+        <div className="animate-bounce mt-10">
           <GameHeader title={'Bouncy!'} />
         </div>
         <div>

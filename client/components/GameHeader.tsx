@@ -8,15 +8,17 @@ interface Props {
 function GameHeader(props: Props) {
   return (
     <>
-      <div className="flex justify-end mr-16 mt-4">
+      <div className="flex justify-end mr-8 mt-2">
         <Switcher />
       </div>
-      <Link
-        to="/category"
-        className="text-6xl text-primary font-bold text-center"
-      >
-        {props.title}
-      </Link>
+      <div className="flex justify-center">
+        <Link
+          to="/category"
+          className="text-6xl text-primary font-bold text-center"
+        >
+          {props.title}
+        </Link>
+      </div>
     </>
   )
 }
