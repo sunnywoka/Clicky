@@ -6,6 +6,7 @@ import Square from './shapes/Square'
 import Triangle from './shapes/Triangle'
 import Explode from './Explode'
 import useGame from './hooks/useGame'
+import AddScoreButton from './AddScoreButton'
 import { motion } from 'framer-motion'
 
 function BounceGame() {
@@ -98,6 +99,7 @@ function BounceGame() {
                 >
                   Restart
                 </button>
+                <AddScoreButton score={states.count.state} gameId={2} />
               </div>
             )}
           </>
