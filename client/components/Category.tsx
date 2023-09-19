@@ -33,8 +33,8 @@ function Category() {
           <Link className="cat-btn" to="/4">
             Game 4/ Difficulty
           </Link>
-          <Link className="cat-btn" to="/5">
-            Game 5/ Difficulty
+          <Link className="cat-btn" to="/movey">
+            Movey
           </Link>
         </div>
         <div className="spacer layer1 flip"></div>
