@@ -14,17 +14,29 @@ export function getCurrentDimension() {
   const width = window.innerWidth
   let newHeight: number = height
   switch (true) {
-    case height < 650 && width < 450:
+    //Mobile S & M
+    case height <= 850 && width <= 400:
       newHeight /= 2
       break
-    case height < 650:
+    //Mobile L
+    case height <= 850 && width <= 450:
       newHeight /= 3
       break
+    //Tablet
+    case height <= 850 && width <= 850:
+      newHeight /= 4
+      break
+    //1080p
     case height <= 1100:
       newHeight /= 8
       break
-    case height > 1100:
-      newHeight /= 9
+    //1440p
+    case height <= 1500:
+      newHeight /= 12
+      break
+    //4k
+    case height <= 2200:
+      newHeight /= 18
       break
   }
   return {

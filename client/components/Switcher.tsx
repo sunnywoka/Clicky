@@ -19,7 +19,7 @@ export default function Switcher() {
         style={{ marginBottom: '2rem' }}
         checked={darkSide}
         onChange={toggleDarkMode}
-        size={30}
+        size={40}
       />
     </>
   )
