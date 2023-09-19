@@ -43,7 +43,9 @@ function Game() {
               <h2 className="text-center flex-grow">
                 Time: {states.num.state}
               </h2>
-              <h2 className="ml-auto">Score: {states.count.state}</h2>
+              <h2 className="ml-auto" data-testid="score">
+                Score: {states.count.state}
+              </h2>
             </div>
             {states.num.state !== 0 ? (
               <>
@@ -52,6 +54,7 @@ function Game() {
                     viewBox={`0 0 300 ${states.screenSize.state.height}`}
                     className="border-4 border-primary m-8 cursor-crosshair"
                     onClick={clicks.handleMissClick}
+                    data-testid="game-box"
                   >
                     <Square
                       x={states.squareXY.state[0]}
