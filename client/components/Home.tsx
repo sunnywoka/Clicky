@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Header from './Header'
 import LoginButton from './LoginButton'
 import ScoreButton from './ScoreButton'
+import { motion } from 'framer-motion'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 import { getPlayer } from '../apis/api'
@@ -28,7 +29,11 @@ function Home() {
 
   return (
     <>
-      <section>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Header />
         {playerName.data ? (
           <p className="flex justify-center text-4xl font-bold text-primary">
@@ -52,7 +57,7 @@ function Home() {
           <ScoreButton />
         </div>
         <div className="spacer layer1 flip"></div>
-      </section>
+      </motion.div>
     </>
   )
 }
