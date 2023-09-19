@@ -5,6 +5,7 @@ import ScoreButton from './ScoreButton'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 import { getPlayer } from '../apis/api'
+import useGetNickname from './hooks/useGetNickname'
 
 function Home() {
   const { getAccessTokenSilently } = useAuth0()
@@ -23,10 +24,21 @@ function Home() {
     },
   })
 
+  const playerName = useGetNickname()
+
   return (
     <>
       <section>
         <Header />
+        {playerName.data ? (
+          <p className="flex justify-center text-4xl font-bold text-primary">
+            Welcome back {playerName.data}!
+          </p>
+        ) : (
+          <p className="flex justify-center text-4xl font-bold text-primary">
+            Log in to save your scores!
+          </p>
+        )}
         <div className="flex justify-center items-center m-24">
           <Link
             to="/category"
