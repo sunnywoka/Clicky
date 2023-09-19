@@ -35,15 +35,13 @@ function Home() {
         exit={{ opacity: 0 }}
       >
         <Header />
-        {playerName.data ? (
-          <p className="flex justify-center text-4xl font-bold text-primary">
-            Welcome back {playerName.data}!
-          </p>
-        ) : (
-          <p className="flex justify-center text-4xl font-bold text-primary">
-            Log in to save your scores!
-          </p>
-        )}
+        <div className="flex justify-center text-4xl font-bold text-primary mt-12">
+          {playerName.data ? (
+            <p>Welcome back {playerName.data}!</p>
+          ) : (
+            <p>Log in to save your scores!</p>
+          )}
+        </div>
         <div className="flex justify-center items-center m-24">
           <Link
             to="/category"
@@ -52,7 +50,7 @@ function Home() {
             Choose Game Mode
           </Link>
         </div>
-        <div className="flex justify-center items-center gap-10 -mb-12">
+        <div className="flex justify-center items-center gap-10">
           <LoginButton />
           <ScoreButton />
         </div>

@@ -39,12 +39,7 @@ function ScoreRanking() {
           {records.data
             ?.sort(compareFn)
             ?.map((Score: Record, index: number, array: Record[]) => (
-              <tr
-                key={Score.nickname}
-                className={
-                  index === array.length - 1 ? 'border-b-2 border-primary' : ''
-                }
-              >
+              <tr key={Score.nickname}>
                 <td className="border-y-2 border-l-2 text-4xl text-primary border-primary px-24 py-4">
                   {index + 1}
                 </td>
