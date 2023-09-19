@@ -6,6 +6,7 @@ import Game from './Game'
 import Explode from './Explode'
 import ScoreRanking from './ScoreRanking'
 import { AnimatePresence } from 'framer-motion'
+import AddNickname from './AddNickname'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -18,6 +19,7 @@ function AnimatedRoutes() {
         <Route path="/bounce" element={<BounceGame />} />
         <Route path="/explode" element={<Explode />} />
         <Route path="/ranking" element={<ScoreRanking />} />
+        <Route path="/addnickname" element={<AddNickname />} />
       </Routes>
     </AnimatePresence>
   )
