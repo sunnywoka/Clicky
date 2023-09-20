@@ -34,7 +34,7 @@ function PainGame() {
         {!states.start.state ? (
           <div className="flex justify-center items-center h-screen">
             <button
-              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse animate-bounce"
+              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3  animate-bounce"
               onClick={clicks.handleStartClick}
             >
               Start
