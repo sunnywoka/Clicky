@@ -60,6 +60,7 @@ function ScoreRanking() {
                 <select
                   value={selectedNickname}
                   onChange={handleNicknameChange}
+                  className="border-2 rounded border-primary p-2 bg-pink3 cursor-pointer dark:bg-[#121212]"
                 >
                   <option value={''}>Nickname</option>
                   {nicknames.map((nickname, index) => (
@@ -73,7 +74,11 @@ function ScoreRanking() {
                 Score
               </th>
               <th className="border-y-4 border-r-4 text-4xl font-bold text-primary border-primary px-24 py-12">
-                <select value={selectedGameId} onChange={handleGameIdChange}>
+                <select
+                  value={selectedGameId}
+                  onChange={handleGameIdChange}
+                  className="border-2 rounded border-primary p-2 bg-pink3 cursor-pointer dark:bg-[#121212]"
+                >
                   <option value={''}>Game Mode</option>
                   {gameIds.map((id, index) => (
                     <option value={id} key={index}>
