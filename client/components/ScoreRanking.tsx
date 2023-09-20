@@ -82,7 +82,15 @@ function ScoreRanking() {
                   <option value={''}>Game Mode</option>
                   {gameIds.map((id, index) => (
                     <option value={id} key={index}>
-                      {id == '1' ? 'Clicky' : id == '2' ? 'Bouncy' : 'Shrinky'}
+                      {id === '1'
+                        ? 'Clicky'
+                        : id === '2'
+                        ? 'Bouncy'
+                        : id === '3'
+                        ? 'Shrinky'
+                        : id === '4'
+                        ? 'Movey'
+                        : 'Pain'}
                     </option>
                   ))}
                 </select>
@@ -121,7 +129,11 @@ function ScoreRanking() {
                         ? 'Clicky'
                         : Score.gameId === 2
                         ? 'Bouncy'
-                        : 'Shrinky'}
+                        : Score.gameId === 3
+                        ? 'Shrinky'
+                        : Score.gameId === 4
+                        ? 'Movey'
+                        : 'Pain'}
                     </td>
                   </tr>
                 ))}
