@@ -105,7 +105,7 @@ function MoveyGame() {
                 >
                   Restart
                 </button>
-                <AddScoreButton score={states.count.state} gameId={1} />
+                <AddScoreButton score={states.count.state} gameId={4} />
               </div>
             )}
           </>

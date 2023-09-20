@@ -107,7 +107,7 @@ function PainGame() {
                 >
                   Restart
                 </button>
-                <AddScoreButton score={states.count.state} gameId={1} />
+                <AddScoreButton score={states.count.state} gameId={5} />
               </div>
             )}
           </>
