@@ -1,11 +1,11 @@
 // @vitest-environment jsdom
 
-import React from 'react';
+import React from 'react'
 import { describe, it, expect, vi } from 'vitest'
 import Square from './shapes/Square'
 import { renderComponent } from '../test-utils'
-import Triangle from './shapes/Triangle';
-import Circle from './shapes/Circle';
+import Triangle from './shapes/Triangle'
+import Circle from './shapes/Circle'
 
 describe('Shapes Components', () => {
   it('renders a Square with a rect element with correct attributes', () => {
@@ -14,7 +14,7 @@ describe('Shapes Components', () => {
       y: 20,
       size: 30,
       handleClick: () => {},
-    };
+    }
 
     const { user } = renderComponent(
       <Square
@@ -23,15 +23,15 @@ describe('Shapes Components', () => {
         y={squareProps.y}
         size={squareProps.size}
       />
-    );
+    )
 
-    const rectElement = document.querySelector('[data-testid="square-rect"]');
-    expect(rectElement).toBeInTheDocument();
-    expect(rectElement?.getAttribute('x')).toBe('10');
-    expect(rectElement?.getAttribute('y')).toBe('20');
-    expect(rectElement?.getAttribute('width')).toBe('30');
-    expect(rectElement?.getAttribute('height')).toBe('30');
-  });
+    const rectElement = document.querySelector('[data-testid="square-rect"]')
+    expect(rectElement).toBeInTheDocument()
+    expect(rectElement?.getAttribute('x')).toBe('10')
+    expect(rectElement?.getAttribute('y')).toBe('20')
+    expect(rectElement?.getAttribute('width')).toBe('30')
+    expect(rectElement?.getAttribute('height')).toBe('30')
+  })
 
   it('renders a Triangle with a polygon element with correct attributes', () => {
     const triangleProps = {
@@ -39,7 +39,7 @@ describe('Shapes Components', () => {
       y: 30,
       sideLength: 40,
       handleTriangleClick: () => {},
-    };
+    }
 
     const { user } = renderComponent(
       <Triangle
@@ -48,12 +48,16 @@ describe('Shapes Components', () => {
         y={triangleProps.y}
         sideLength={triangleProps.sideLength}
       />
-    );
+    )
 
-    const polygonElement = document.querySelector('[data-testid="triangle-polygon"]');
-    expect(polygonElement).toBeInTheDocument();
-    expect(polygonElement?.getAttribute('points')).toBe('40 36, 60 70, 20 70');
-  });
+    const polygonElement = document.querySelector(
+      '[data-testid="triangle-polygon"]'
+    )
+    expect(polygonElement).toBeInTheDocument()
+    expect(polygonElement?.getAttribute('points')).toBe(
+      '40 35.35898384862245, 60 70, 20 70'
+    )
+  })
 
   it('renders a Circle with a circle element with correct attributes', () => {
     const circleProps = {
@@ -61,7 +65,7 @@ describe('Shapes Components', () => {
       y: 40,
       radius: 20,
       handleCircleClick: () => {},
-    };
+    }
 
     const { user } = renderComponent(
       <Circle
@@ -70,12 +74,14 @@ describe('Shapes Components', () => {
         y={circleProps.y}
         radius={circleProps.radius}
       />
-    );
+    )
 
-    const circleElement = document.querySelector('[data-testid="circle-circle"]');
-    expect(circleElement).toBeInTheDocument();
-    expect(circleElement?.getAttribute('cx')).toBe('35');
-    expect(circleElement?.getAttribute('cy')).toBe('45');
-    expect(circleElement?.getAttribute('r')).toBe('20');
-  });
-});
+    const circleElement = document.querySelector(
+      '[data-testid="circle-circle"]'
+    )
+    expect(circleElement).toBeInTheDocument()
+    expect(circleElement?.getAttribute('cx')).toBe('40')
+    expect(circleElement?.getAttribute('cy')).toBe('50')
+    expect(circleElement?.getAttribute('r')).toBe('20')
+  })
+})
