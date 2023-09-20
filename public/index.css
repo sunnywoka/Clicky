@@ -23,3 +23,7 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+.select-items {
+  background-color: DodgerBlue;
+}
