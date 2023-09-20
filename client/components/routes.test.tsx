@@ -37,7 +37,7 @@ describe('Routes', () => {
     await screen.findByText('Clicky!')
   })
 
-  it('when user clicks "Bounce" button move to bounce game page', async () => {
+  it('when user clicks "Bouncy" button move to bounce game page', async () => {
     render(
       <MemoryRouter initialEntries={['/category']}>
         <Routes>
@@ -46,8 +46,8 @@ describe('Routes', () => {
         </Routes>
       </MemoryRouter>
     )
-    userEvent.click(screen.getByRole('link', { name: /Bounce/i }))
-    await screen.findByText('Bounce!')
+    userEvent.click(screen.getByRole('link', { name: /Bouncy/i }))
+    await screen.findByText('Bouncy!')
   })
 
   it('when user clicks "Blicky" heading move to home page', async () => {

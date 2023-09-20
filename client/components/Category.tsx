@@ -30,8 +30,8 @@ function Category() {
         </div>
 
         <div className="flex justify-center items-center gap-96 m-6">
-          <Link className="cat-btn" to="/4">
-            Game 4/ Difficulty
+          <Link className="cat-btn" to="/pain">
+            Pain
           </Link>
           <Link className="cat-btn" to="/movey">
             Movey

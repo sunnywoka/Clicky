@@ -20,9 +20,7 @@ test('1. List all score by game ID', async () => {
 })
 
 test('2. List all score by auth0 ID', async () => {
-  const scores = await dbFunction.getPlayersScoresByAuth0ID(
-    'auth0|6478f3fd75374ee3d7bc4d94'
-  )
+  const scores = await dbFunction.getPlayersScoresBynickname('Mr.Hum')
   expect(scores).toHaveLength(2)
   expect(scores[0]).toHaveProperty('score')
 })
@@ -69,14 +67,13 @@ test('4. Add a new record to database and the database can get two scores for ga
 test('5. Add a new record to database and the database can get three scores for same Auth0 ID', async () => {
   const testRecord = {
     auth0Id: 'auth0|6478f3fd75374ee3d7bc4d94',
+    nickname: 'Mr.Hum',
     score: 966,
     gameId: 2,
   }
 
   await dbFunction.addNewScore(testRecord)
-  const gameAuth0Records = await dbFunction.getPlayersScoresByAuth0ID(
-    'auth0|6478f3fd75374ee3d7bc4d94'
-  )
+  const gameAuth0Records = await dbFunction.getPlayersScoresBynickname('Mr.Hum')
   expect(gameAuth0Records).toStrictEqual([
     {
       nickname: 'Mr.Hum',

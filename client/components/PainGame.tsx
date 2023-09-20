@@ -13,7 +13,7 @@ import MoveySquare from './shapes/moveyshapes/MoveySquare'
 import MoveyCircle from './shapes/moveyshapes/MoveyCircle'
 import MoveyTriangle from './shapes/moveyshapes/MoveyTriangle'
 
-function MoveyGame() {
+function PainGame() {
   const { states, effects, clicks, audio } = useGame()
   return (
     <>
@@ -22,7 +22,9 @@ function MoveyGame() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <GameHeader title={'Movey!'} />
+        <div className="animate-bounce mt-10">
+          <GameHeader title={'Pain!'} />
+        </div>
         <div>
           <audio ref={audio.audioRef}>
             <source src="../../src/click.wav" type="audio/mpeg" />
@@ -32,7 +34,7 @@ function MoveyGame() {
         {!states.start.state ? (
           <div className="flex justify-center items-center h-screen">
             <button
-              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+              className="border-4 rounded text-5xl font-bold text-primary border-primary px-48 py-24 hover:bg-pink2 hover:text-pink3 hover:animate-pulse animate-bounce"
               onClick={clicks.handleStartClick}
             >
               Start
@@ -42,15 +44,15 @@ function MoveyGame() {
           <>
             <div className="flex justify-center p-2 m-4 items-center text-3xl">
               <Link
-                className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+                className="align-start border-4 border-primary px-4 rounded text-primary hover:bg-pink2 hover:text-pink3 hover:animate-pulse animate-bounce"
                 to="/category"
               >
                 Go Back
               </Link>
-              <h2 className="text-center flex-grow">
+              <h2 className="text-center flex-grow animate-bounce">
                 Time: {states.num.state}
               </h2>
-              <h2 className="ml-auto" data-testid="score">
+              <h2 className="ml-auto animate-bounce" data-testid="score">
                 Score: {states.count.state}
               </h2>
             </div>
@@ -59,32 +61,32 @@ function MoveyGame() {
                 <div className="flex justify-center items-center p-2">
                   <svg
                     viewBox={`0 0 300 ${states.screenSize.state.height}`}
-                    className="border-4 border-primary m-8 cursor-crosshair"
+                    className="border-4 border-primary m-8 cursor-crosshair animate-bounce"
                     onClick={clicks.handleMissClick}
                     data-testid="game-box"
                   >
                     <MoveySquare
                       x={states.squareXY.state[0]}
                       y={states.squareXY.state[1]}
-                      size={20}
+                      size={states.shapeSize.state}
                       handleClick={clicks.handleSquareClick}
-                      className={''}
+                      className={'animate-bounce'}
                       move={states.move.state}
                     />
                     <MoveyCircle
                       x={states.circleXY.state[0]}
                       y={states.circleXY.state[1]}
-                      radius={10}
+                      radius={states.shapeSize.state / 2}
                       handleCircleClick={clicks.handleCircleClick}
-                      className={''}
+                      className={'animate-bounce'}
                       move={states.move.state}
                     />
                     <MoveyTriangle
                       x={states.triangleXY.state[0]}
                       y={states.triangleXY.state[1]}
-                      sideLength={20}
+                      sideLength={states.shapeSize.state}
                       handleTriangleClick={clicks.handleTriangleClick}
-                      className={''}
+                      className={'animate-bounce'}
                       move={states.move.state}
                     />
                   </svg>
@@ -97,10 +99,10 @@ function MoveyGame() {
                 </div>
               </>
             ) : (
-              <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl">
+              <div className="flex flex-col gap-20 justify-center items-center border-4 border-primary p-36 m-36 text-center text-3xl animate-bounce">
                 <GameOver score={states.count.state} />
                 <button
-                  className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 hover:animate-pulse"
+                  className="border-4 rounded text-5xl font-bold text-primary border-primary px-24 py-18 hover:bg-pink2 hover:text-pink3 hover:animate-pulse animate-bounce"
                   onClick={() => window.location.reload()}
                 >
                   Restart
@@ -115,4 +117,4 @@ function MoveyGame() {
   )
 }
 
-export default MoveyGame
+export default PainGame

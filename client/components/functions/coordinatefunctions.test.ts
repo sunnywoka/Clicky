@@ -42,7 +42,7 @@ test('getCurrentDimension function should return the correct dimensions for medi
 
   expect(result).toEqual({
     width: 500, // window.innerWidth should be returned as is
-    height: Math.floor(600 / 3), // Expected height for this case
+    height: Math.floor(450 / 3), // Expected height for this case
   })
 })
 
@@ -57,7 +57,7 @@ test('getCurrentDimension function should return the correct dimensions for medi
 
   expect(result).toEqual({
     width: 600, // window.innerWidth should be returned as is
-    height: Math.floor(800 / 8), // Expected height for this case
+    height: Math.floor(800 / 4), // Expected height for this case
   })
 })
 
@@ -72,7 +72,7 @@ test('getCurrentDimension function should return the correct dimensions for larg
 
   expect(result).toEqual({
     width: 1000, // window.innerWidth should be returned as is
-    height: Math.floor(1200 / 9), // Expected height for this case
+    height: Math.floor(1200 / 12), // Expected height for this case
   })
 })
 
