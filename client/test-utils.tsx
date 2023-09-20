@@ -19,29 +19,29 @@ export function renderComponent(component: JSX.Element) {
   return { user, ...render(component) }
 }
 
-// export function renderWithRouter(location = '/') {
-//   const router = createMemoryRouter(routes, {
-//     initialEntries: [location],
-//   })
+export function renderWithRouter(location = '/') {
+  const router = createMemoryRouter(routes, {
+    initialEntries: [location],
+  })
 
-//   userEvent.setup()
-//   return render(<RouterProvider router={router} />)
-// }
+  userEvent.setup()
+  return render(<RouterProvider router={router} />)
+}
 
-// export function renderWithQuery(component: JSX.Element) {
-//   userEvent.setup()
-//   const queryClient = new QueryClient()
+export function renderWithQuery(component: JSX.Element) {
+  userEvent.setup()
+  const queryClient = new QueryClient()
 
-//   return {
-//     user: userEvent,
-//     ...render(
-//       <QueryClientProvider client={queryClient}>
-//         <RouterProvider
-//           router={createMemoryRouter(
-//             createRoutesFromElements(<Route path="/" element={component} />)
-//           )}
-//         />
-//       </QueryClientProvider>
-//     ),
-//   }
-// }
+  return {
+    user: userEvent,
+    ...render(
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider
+          router={createMemoryRouter(
+            createRoutesFromElements(<Route path="/" element={component} />)
+          )}
+        />
+      </QueryClientProvider>
+    ),
+  }
+}

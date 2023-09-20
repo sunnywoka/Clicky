@@ -7,18 +7,23 @@ import Home from './Home'
 import Category from './Category'
 import Game from './Game'
 import BounceGame from './BounceGame'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 afterEach(cleanup)
+
+const queryClient = new QueryClient()
 
 describe('Routes', () => {
   it('when user clicks "Choose Game Mode" button move to category page', async () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/category" element={<Category />} />
-        </Routes>
-      </MemoryRouter>
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter initialEntries={['/']}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/category" element={<Category />} />
+          </Routes>
+        </MemoryRouter>
+      </QueryClientProvider>
     )
     userEvent.click(screen.getByRole('link', { name: /Choose Game Mode/i }))
     await screen.findByText('Game Modes')
