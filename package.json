@@ -43,9 +43,10 @@
     "kute": "^1.0.0",
     "kute.js": "^2.2.4",
     "nock": "^13.3.3",
+    "pg": "^8.11.3",
     "react-explode": "^2.0.5",
-    "sinon": "^16.0.0",
     "react-toggle-dark-mode": "^1.1.1",
+    "sinon": "^16.0.0",
     "sqlite3": "^5.1.6",
     "update-dotenv": "^1.1.1",
     "use-sound": "^4.0.1",
@@ -101,5 +102,8 @@
     "semi": false,
     "singleQuote": true
   },
-  "browserslist": "> 2%, not dead"
+  "browserslist": "> 2%, not dead",
+  "engines" : { 
+    "node" : ">=16.0.0" 
+  }
 }
